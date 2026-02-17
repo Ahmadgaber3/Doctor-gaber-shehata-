@@ -1,136 +1,116 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>معمل دكتور جابر شحاتة</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title>دكتور جابر شحاتة - تحاليل طبية</title>
 
 <style>
-:root{
---primary:#0056b3;
---light:#f4f8fb;
---dark:#1e293b;
---wa:#25d366;
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+    background-color: #f4f8fb;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
-
-body{background:var(--light);color:var(--dark)}
-
-header{
-background:white;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 30px;
-box-shadow:0 2px 10px rgba(0,0,0,.05);
-position:sticky;
-top:0;
-z-index:1000;
+/* HEADER */
+header {
+    background-color: #0077b6;
+    color: #fff;
+    text-align: center;
+    padding: 30px 20px 60px 20px;
+    position: relative;
 }
 
-.logo{
-font-weight:800;
-color:var(--primary);
-font-size:20px;
+header img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid white;
+    position: absolute;
+    top: 10px;
+    right: 20px;
 }
 
-nav a{
-margin:0 10px;
-text-decoration:none;
-color:var(--dark);
-font-weight:600;
+header h1 {
+    margin: 0;
+    font-size: 32px;
 }
 
-.hero{
-background:linear-gradient(rgba(0,86,179,.8),rgba(0,86,179,.8)),
-url('https://images.unsplash.com/photo-1581091012184-5c7b9c29a1b6');
-background-size:cover;
-background-position:center;
-color:white;
-padding:100px 20px;
-text-align:center;
+header p {
+    font-size: 18px;
+    margin-top: 10px;
 }
 
-.hero h1{font-size:36px;margin-bottom:15px}
-.hero p{margin-bottom:20px}
-
-.btn{
-background:white;
-color:var(--primary);
-padding:12px 25px;
-border-radius:30px;
-text-decoration:none;
-font-weight:700;
+/* SERVICES CARDS */
+.services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: auto;
 }
 
-.section{
-padding:60px 20px;
-max-width:1200px;
-margin:auto;
+.card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
 }
 
-.section h2{
-text-align:center;
-margin-bottom:40px;
-color:var(--primary);
+.card:hover {
+    transform: translateY(-5px);
 }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
+.card h3 {
+    margin-top: 0;
+    color: #0077b6;
 }
 
-.card{
-background:white;
-padding:25px;
-border-radius:15px;
-box-shadow:0 5px 15px rgba(0,0,0,.05);
-transition:.3s;
+.card p {
+    margin: 10px 0;
+    font-size: 16px;
 }
 
-.card:hover{
-transform:translateY(-5px);
-box-shadow:0 10px 25px rgba(0,0,0,.1);
+/* BUTTON */
+button {
+    background-color: #00b4d8;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.price{
-color:var(--primary);
-font-weight:800;
-margin:10px 0;
+button:hover {
+    background-color: #0096c7;
 }
 
-.order-btn{
-background:var(--wa);
-color:white;
-padding:10px;
-border-radius:10px;
-text-align:center;
-display:block;
-text-decoration:none;
-font-weight:700;
+/* RESERVE SECTION */
+.reserve {
+    background-color: #023e8a;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
 }
 
-.pack{
-background:var(--primary);
-color:white;
-padding:30px;
-border-radius:20px;
-text-align:center;
+.reserve p {
+    font-size: 20px;
+    margin: 10px 0;
 }
 
-.pack h3{margin-bottom:10px}
-
-.footer{
-background:#0f172a;
-color:white;
-padding:40px 20px;
-text-align:center;
-margin-top:40px;
+/* FOOTER */
+footer {
+    background-color: #0077b6;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
 }
 </style>
 </head>
@@ -138,87 +118,56 @@ margin-top:40px;
 <body>
 
 <header>
-<div class="logo">معمل د/ جابر شحاتة</div>
-<nav>
-<a href="#">الرئيسية</a>
-<a href="#">التحاليل</a>
-<a href="#">الباقات</a>
-<a href="#">اتصل بنا</a>
-</nav>
+    <img src="https://via.placeholder.com/150" alt="Dr Gaber Shehata">
+    <h1>🏥 دكتور جابر شحاتة</h1>
+    <p>أفضل خدمات التحاليل الطبية بأحدث الأجهزة ودقة عالية في النتائج</p>
 </header>
 
-<section class="hero">
-<h1>معمل دكتور جابر شحاتة</h1>
-<p>أبو المطامير - مساكن الإرشاد | يوميًا من 9 صباحًا إلى 9 مساءً</p>
-<a href="https://wa.me/201015090991?text=أريد طلب سحب منزلي" class="btn">
-طلب سحب منزلي
-</a>
+<section class="services">
+    <div class="card">
+        <h3>تحليل سكر</h3>
+        <p>مدة التحليل: 10 دقائق</p>
+        <p>سعر التحليل: 120 جنيه</p>
+        <p>ملاحظات: صيام 8 ساعات قبل التحليل</p>
+    </div>
+    <div class="card">
+        <h3>صورة دم كاملة</h3>
+        <p>مدة التحليل: 15 دقيقة</p>
+        <p>سعر التحليل: 150 جنيه</p>
+        <p>ملاحظات: لا يحتاج صيام</p>
+    </div>
+    <div class="card">
+        <h3>وظائف كبد</h3>
+        <p>مدة التحليل: 20 دقيقة</p>
+        <p>سعر التحليل: 200 جنيه</p>
+        <p>ملاحظات: يُفضل عدم تناول أدوية قبل التحليل</p>
+    </div>
+    <div class="card">
+        <h3>وظائف كلى</h3>
+        <p>مدة التحليل: 15 دقيقة</p>
+        <p>سعر التحليل: 180 جنيه</p>
+        <p>ملاحظات: شرب ماء كافي قبل التحليل</p>
+    </div>
+    <div class="card">
+        <h3>تحاليل هرمونات</h3>
+        <p>مدة التحليل: 30 دقيقة</p>
+        <p>سعر التحليل: 250 جنيه</p>
+        <p>ملاحظات: يُفضل الصيام حسب نوع الهرمون</p>
+    </div>
 </section>
 
-<section class="section">
-<h2>أشهر التحاليل الطبية</h2>
-<div class="grid" id="tests"></div>
+<section class="reserve">
+    <h2>احجز الآن</h2>
+    <p>📞 01015090991</p>
+    <button onclick="window.location.href='tel:01015090991'">
+        اتصل الآن
+    </button>
 </section>
 
-<section class="section">
-<h2>باقات مميزة</h2>
-<div class="grid">
-<div class="pack">
-<h3>باقة الفحص الشامل</h3>
-<p>CBC + سكر + دهون + وظائف كبد وكلى</p>
-<p style="font-size:20px;font-weight:800;">650 جنيه</p>
-</div>
-<div class="pack">
-<h3>باقة فيتامينات</h3>
-<p>فيتامين د + ب12 + حديد</p>
-<p style="font-size:20px;font-weight:800;">500 جنيه</p>
-</div>
-</div>
-</section>
-
-<section class="section">
-<h2>عن المعمل</h2>
-<p style="text-align:center;max-width:800px;margin:auto">
-معمل دكتور جابر شحاتة يوفر أحدث أجهزة التحاليل الطبية بدقة عالية
-وسرعة في استخراج النتائج، مع فريق متخصص وخدمة سحب منزلي متميزة.
-</p>
-</section>
-
-<div class="footer">
-جميع حقوق النشر محفوظة © 2026 معمل دكتور جابر شحاتة
-<br><br>
-<a href="tel:01015090991" style="color:white;text-decoration:none;">اتصل بنا</a> |
-<a href="https://wa.me/201015090991" style="color:white;text-decoration:none;">واتساب</a>
-</div>
-
-<script>
-const tests=[
-["CBC صورة دم كاملة",120],["ESR",60],["CRP",120],["فصيلة الدم",80],
-["سكر صائم",60],["سكر فاطر",60],["HbA1c",150],["تحليل بول كامل",70],
-["تحليل براز كامل",70],["وظائف كبد",200],["وظائف كلى",180],["دهون كاملة",220],
-["كوليسترول",90],["دهون ثلاثية",90],["HDL",90],["LDL",90],
-["TSH",150],["T3",120],["T4",120],["فيتامين د",250],
-["فيتامين ب12",200],["حديد",100],["Ferritin",200],["كالسيوم",90],
-["مغنيسيوم",100],["حمض اليوريك",80],["تحليل حمل",80],["PSA",250],
-["PT",120],["PTT",120],["INR",100],["فيروس C",250],
-["فيروس B",220],["HIV",300],["ASOT",150],["RF",150],
-["ANA",350],["D-Dimer",400],["Troponin",450],["تحليل سيولة",200]
-];
-
-let container=document.getElementById("tests");
-
-tests.forEach(test=>{
-container.innerHTML+=`
-<div class="card">
-<h4>${test[0]}</h4>
-<div class="price">${test[1]} جنيه</div>
-<a class="order-btn" target="_blank"
-href="https://wa.me/201015090991?text=أريد طلب تحليل ${encodeURIComponent(test[0])}">
-اطلب الآن
-</a>
-</div>`;
-});
-</script>
+<footer>
+    <p>📍 العنوان: أبو المطامير - مساكن الإرشاد</p>
+    <p>© 2026 جميع الحقوق محفوظة by / Eng Ahmad Gaber</p>
+</footer>
 
 </body>
 </html>
