@@ -1,92 +1,61 @@
-button {
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>دكتور جابر شحاتة - تحاليل طبية</title>
-
-<style>
-body {
-    font-family: Arial, sans-serif;
-    direction: rtl;
-    margin: 0;
-    background-color: #f4f8fb;
-}
-
-header {
-    background: #0077b6;
-    color: white;
-    padding: 25px;
-    text-align: center;
-}
-
-section {
-    padding: 30px;
-    text-align: center;
-}
-
-.services p {
-    background: white;
-    margin: 10px auto;
-    padding: 10px;
-    width: 60%;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-}
-    
-    background: #00b4d8;
-    border: none;
-    padding: 12px 25px;
-    color: white;
-    font-size: 16px;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #0096c7;
-}
-
-footer {
-    background: #023e8a;
-    color: white;
-    text-align: center;
-    padding: 15px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معمل دكتور جابر شحاتة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --primary: #0070f3; --whatsapp: #25d366; --bg: #f0f2f5; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg); margin: 0; padding: 0; color: #333; }
+        .header { background: white; padding: 20px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border-bottom: 4px solid var(--primary); }
+        .profile-img { width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--primary); margin-bottom: 10px; object-fit: cover; }
+        .container { max-width: 600px; margin: 20px auto; padding: 0 15px; }
+        .section { background: white; padding: 20px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .btn-whatsapp { background: var(--whatsapp); color: white; padding: 12px 25px; text-decoration: none; border-radius: 30px; display: inline-flex; align-items: center; gap: 10px; font-weight: bold; width: 80%; justify-content: center; }
+        .test-card { border: 1px solid #eee; padding: 15px; border-radius: 10px; margin-bottom: 15px; background: #fafafa; }
+        .test-header { display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: bold; }
+        .order-btn { background: var(--whatsapp); color: white; padding: 8px; border-radius: 5px; text-decoration: none; display: block; text-align: center; font-size: 14px; }
+    </style>
 </head>
-
 <body>
 
-<header>
-    <h1>🏥 دكتور جابر شحاتة</h1>
-    <p>أفضل خدمات التحاليل الطبية بأحدث الأجهزة ودقة عالية في النتائج</p>
-</header>
+<div class="header">
+    <img src="doctor.jpg" class="profile-img" alt="دكتور جابر شحاتة">
+    <h1>دكتور جابر شحاتة</h1>
+    <p>أبو المطامير - مساكن الإرشاد</p>
+</div>
 
-<section class="services">
-    <h2>خدماتنا</h2>
-    <p>✔ تحليل سكر</p>
-    <p>✔ صورة دم كاملة</p>
-    <p>✔ وظائف كبد</p>
-    <p>✔ وظائف كلى</p>
-    <p>✔ تحاليل هرمونات</p>
-    <p>✔ تحاليل شاملة</p>
-</section>
+<div class="container">
+    <div class="section" style="text-align: center;">
+        <h3>تواصل مباشر مع المختبر</h3>
+        <a href="https://wa.me/201018558901" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> مراسلة واتساب</a>
+    </div>
 
-<section>
-    <h2>احجز الآن</h2>
-    <p>📞 01015090991</p>
-    <br>
-    <button onclick="window.location.href='tel:01015090991'">
-        اتصل الآن
-    </button>
-</section>
+    <div class="section">
+        <h2 style="color: var(--primary); text-align: center;">🔬 التحاليل المشهورة</h2>
+        
+        <div class="test-card">
+            <div class="test-header"><span>صورة دم كاملة (CBC)</span><span style="color: green;">متاح</span></div>
+            <a href="https://wa.me/201018558901?text=استفسار عن تحليل صورة دم كاملة" class="order-btn">اطلب الآن</a>
+        </div>
 
-<footer>
-    <p>📍 العنوان: أبو المطامير - مساكن الإرشاد</p>
-    <p>© 2026 جميع الحقوق محفوظة</p>
-</footer>
+        <div class="test-card">
+            <div class="test-header"><span>سكر صائم وفاطر</span><span style="color: green;">متاح</span></div>
+            <a href="https://wa.me/201018558901?text=استفسار عن تحليل سكر صائم وفاطر" class="order-btn">اطلب الآن</a>
+        </div>
+
+        <div class="test-card">
+            <div class="test-header"><span>وظائف كبد وكلى</span><span style="color: green;">متاح</span></div>
+            <a href="https://wa.me/201018558901?text=استفسار عن وظائف كبد وكلى" class="order-btn">اطلب الآن</a>
+        </div>
+
+        <div class="test-card">
+            <div class="test-header"><span>هرمونات الغدة الدرقية</span><span style="color: green;">متاح</span></div>
+            <a href="https://wa.me/201018558901?text=استفسار عن تحليل الغدة الدرقية" class="order-btn">اطلب الآن</a>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
