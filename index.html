@@ -1,74 +1,289 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>معمل دكتور جابر شحاتة - للتحاليل الطبية</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root { --primary: #0056b3; --accent: #00b4d8; --wa: #25d366; --bg: #f4f7f6; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg); margin: 0; padding-bottom: 90px; color: #333; line-height: 1.6; }
-        
-        /* تصميم الهيدر الفاخر */
-        .hero { background: linear-gradient(45deg, var(--primary), var(--accent)); color: white; padding: 40px 20px; text-align: center; border-radius: 0 0 40px 40px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
-        .doc-img { width: 130px; height: 130px; border-radius: 50%; border: 5px solid rgba(255,255,255,0.3); margin-bottom: 15px; object-fit: cover; }
-        .hero h1 { margin: 5px 0; font-size: 28px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
-        .hero .info { background: rgba(255,255,255,0.15); display: inline-block; padding: 10px 20px; border-radius: 20px; font-size: 14px; margin-top: 10px; }
-        
-        /* الحاويات والتصنيفات */
-        .container { max-width: 600px; margin: -30px auto 0; padding: 0 15px; }
-        .cat-title { background: #fff; color: var(--primary); padding: 12px 20px; border-radius: 12px; margin: 30px 0 15px; font-weight: bold; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        
-        /* تصميم بطاقة التحليل */
-        .test-card { background: white; border-radius: 15px; padding: 18px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; border-right: 5px solid var(--accent); }
-        .test-card:active { transform: scale(0.98); background: #fdfdfd; }
-        .test-info h4 { margin: 0 0 5px; font-size: 16px; color: #222; }
-        .test-info p { margin: 0; font-size: 12px; color: #777; }
-        
-        /* زر الطلب */
-        .order-btn { background: var(--wa); color: white; padding: 10px 18px; border-radius: 10px; text-decoration: none; font-size: 14px; font-weight: bold; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2); }
-        
-        /* زر الواتساب العائم */
-        .fixed-footer { position: fixed; bottom: 20px; left: 20px; right: 20px; z-index: 1000; }
-        .wa-floating { background: var(--wa); color: white; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 15px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 18px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>معمل دكتور جابر شحاتة</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+:root{
+--primary:#0f172a;
+--accent:#06b6d4;
+--light:#f1f5f9;
+--success:#25d366;
+--gold:#f59e0b;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
+
+body{
+background:linear-gradient(135deg,#e0f2fe,#f8fafc);
+color:#1e293b;
+overflow-x:hidden;
+padding-bottom:120px;
+}
+
+/* أنيميشن تحميل */
+.loader{
+position:fixed;
+width:100%;
+height:100%;
+background:white;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+animation:fadeOut 1s ease 2s forwards;
+}
+
+.loader span{
+width:60px;
+height:60px;
+border:6px solid #ddd;
+border-top:6px solid var(--accent);
+border-radius:50%;
+animation:spin 1s linear infinite;
+}
+
+@keyframes spin{100%{transform:rotate(360deg)}}
+@keyframes fadeOut{to{opacity:0;visibility:hidden}}
+
+header{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+color:white;
+padding:60px 20px;
+text-align:center;
+border-radius:0 0 60px 60px;
+box-shadow:0 20px 40px rgba(0,0,0,0.2);
+animation:slideDown 1s ease;
+}
+
+@keyframes slideDown{
+from{transform:translateY(-100px);opacity:0}
+to{transform:translateY(0);opacity:1}
+}
+
+header h1{font-size:32px;font-weight:800;margin-bottom:10px}
+header p{opacity:.8;font-size:15px}
+
+.container{
+max-width:1100px;
+margin:40px auto;
+padding:0 20px;
+}
+
+.section-title{
+font-size:26px;
+font-weight:800;
+margin:40px 0 20px;
+color:var(--primary);
+text-align:center;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.05);
+transition:.4s;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+opacity:0;
+transform:translateY(40px);
+}
+
+.card.show{
+opacity:1;
+transform:translateY(0);
+transition:0.6s;
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.03);
+box-shadow:0 20px 40px rgba(0,0,0,0.15);
+}
+
+.card h4{
+font-size:15px;
+margin-bottom:10px;
+}
+
+.price{
+color:var(--gold);
+font-weight:800;
+margin-bottom:15px;
+}
+
+.order-btn{
+background:var(--success);
+color:white;
+padding:10px;
+border-radius:12px;
+text-align:center;
+text-decoration:none;
+font-weight:600;
+transition:.3s;
+}
+
+.order-btn:hover{
+background:#1ebc57;
+}
+
+.info-box{
+background:white;
+padding:25px;
+border-radius:20px;
+margin-top:40px;
+box-shadow:0 10px 20px rgba(0,0,0,0.05);
+text-align:center;
+}
+
+.footer-buttons{
+position:fixed;
+bottom:20px;
+left:20px;
+right:20px;
+display:flex;
+gap:10px;
+}
+
+.footer-buttons a{
+flex:1;
+padding:15px;
+border-radius:40px;
+text-align:center;
+text-decoration:none;
+font-weight:700;
+color:white;
+}
+
+.call-btn{background:#2563eb;}
+.about-btn{background:#0f172a;}
+
+footer{
+margin-top:60px;
+text-align:center;
+font-size:14px;
+opacity:.7;
+}
+</style>
 </head>
+
 <body>
 
-<div class="hero">
-    <img src="doctor.jpg" class="doc-img" alt="دكتور جابر شحاتة">
-    <h1>دكتور جابر شحاتة</h1>
-    <div class="info">
-        <i class="fas fa-map-marker-alt"></i> أبو المطامير - مساكن الإرشاد<br>
-        <i class="fas fa-phone"></i> 01015090991
-    </div>
-</div>
+<div class="loader"><span></span></div>
+
+<header>
+<h1>معمل دكتور جابر شحاتة</h1>
+<p>أبو المطامير - مساكن الإرشاد | 01015090991</p>
+<p>مواعيد العمل: يوميًا من 9 صباحًا إلى 9 مساءً</p>
+</header>
 
 <div class="container">
-    <div class="cat-title"><i class="fas fa-tint"></i> تحاليل الدم والمناعة</div>
-    <div class="test-card">
-        <div class="test-info"><h4>صورة دم كاملة (CBC)</h4><p>كشف الأنيميا، كرات الدم، والصفائح</p></div>
-        <a href="https://wa.me/201015090991?text=أريد طلب تحليل CBC" class="order-btn"><i class="fab fa-whatsapp"></i> اطلب</a>
-    </div>
-    <div class="test-card">
-        <div class="test-info"><h4>سرعة الترسيب (ESR)</h4><p>كشف الالتهابات في الجسم</p></div>
-        <a href="https://wa.me/201015090991?text=أريد طلب تحليل ESR" class="order-btn"><i class="fab fa-whatsapp"></i> اطلب</a>
-    </div>
-    <div class="test-card">
-        <div class="test-info"><h4>فصيلة الدم (Blood Group)</h4><p>تحديد الفصيلة وعامل Rh</p></div>
-        <a href="https://wa.me/201015090991?text=أريد طلب تحليل فصيلة دم" class="order-btn"><i class="fab fa-whatsapp"></i> اطلب</a>
-    </div>
-    <div class="test-card">
-        <div class="test-info"><h4>زمن النزف والتجلط</h4><p>Bleeding & Clotting Time</p></div>
-        <a href="https://wa.me/201015090991?text=أريد طلب تحليل تجلط" class="order-btn"><i class="fab fa-whatsapp"></i> اطلب</a>
-    </div>
 
-    <div class="cat-title"><i class="fas fa-cubes"></i> تحاليل السكر</div>
-    <div class="test-card">
-        <div class="test-info"><h4>سكر صائم (Fasting)</h4><p>صيام 6-8 ساعات</p></div>
-        <a href="https://wa.me/201015090991?text=أريد طلب تحليل سكر صائم" class="order-btn"><i class="fab fa-whatsapp"></i> اطلب</a>
-    </div>
-    <div class="test-card">
-        <div class="test-info"><h4>سكر فاطر (Post Prandial)</h4><p>بعد الأكل بساعتين</p></div>
-        <a href="https://
-            
+<div class="section-title">أشهر التحاليل الطبية</div>
+
+<div class="grid" id="tests"></div>
+
+<div class="info-box">
+<h3>عن المعمل</h3>
+<p>
+معمل دكتور جابر شحاتة يقدم أدق التحاليل الطبية باستخدام أحدث الأجهزة المعتمدة عالميًا.
+نلتزم بسرعة استخراج النتائج والدقة والجودة مع أفضل خدمة للمرضى في أبو المطامير.
+</p>
+</div>
+
+<footer>
+جميع حقوق النشر محفوظة © 2026 معمل دكتور جابر شحاتة للتحاليل الطبية
+</footer>
+
+</div>
+
+<div class="footer-buttons">
+<a href="tel:01015090991" class="call-btn">اتصل بنا</a>
+<a href="#" class="about-btn">عن المعمل</a>
+</div>
+
+<script>
+const tests = [
+["CBC صورة دم كاملة",120],
+["ESR سرعة الترسيب",60],
+["CRP",120],
+["فصيلة الدم",80],
+["سكر صائم",60],
+["سكر فاطر",60],
+["HbA1c",150],
+["تحليل بول كامل",70],
+["تحليل براز كامل",70],
+["وظائف كبد",200],
+["وظائف كلى",180],
+["دهون كاملة",220],
+["كوليسترول",90],
+["دهون ثلاثية",90],
+["HDL",90],
+["LDL",90],
+["TSH",150],
+["T3",120],
+["T4",120],
+["فيتامين د",250],
+["فيتامين ب12",200],
+["حديد",100],
+["Ferritin",200],
+["كالسيوم",90],
+["مغنيسيوم",100],
+["حمض اليوريك",80],
+["تحليل حمل",80],
+["PSA",250],
+["PT",120],
+["PTT",120],
+["INR",100],
+["فيروس C",250],
+["فيروس B",220],
+["HIV",300],
+["ASOT",150],
+["RF",150],
+["ANA",350],
+["D-Dimer",400],
+["Troponin",450],
+["تحليل سيولة",200]
+];
+
+const container = document.getElementById("tests");
+
+tests.forEach(test=>{
+container.innerHTML+=`
+<div class="card">
+<h4>${test[0]}</h4>
+<div class="price">${test[1]} جنيه</div>
+<a class="order-btn" target="_blank"
+href="https://wa.me/201015090991?text=أريد طلب تحليل ${encodeURIComponent(test[0])}">
+اطلب الآن
+</a>
+</div>`;
+});
+
+/* أنيميشن عند الاسكرول */
+const cards=document.querySelectorAll(".card");
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+},{threshold:0.2});
+
+cards.forEach(card=>observer.observe(card));
+</script>
+
+</body>
+</html>
