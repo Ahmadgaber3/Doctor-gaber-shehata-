@@ -1,112 +1,210 @@
-
-</html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دكتور جابر شحاتة | مختبر تحاليل طبية</title>
+    <title>معمل د. جابر شحاته</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root { --dark: #121212; --card-bg: #1e1e1e; --primary: #2ecc71; --text: #e0e0e0; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--dark); margin: 0; padding-bottom: 100px; color: var(--text); }
-        
-        /* الهيدر الاحترافي */
-        .header { background: linear-gradient(180deg, #1e1e1e, #121212); padding: 40px 20px; text-align: center; border-bottom: 2px solid var(--primary); }
-        .doc-img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--primary); margin-bottom: 15px; padding: 5px; object-fit: cover; }
-        .header h1 { color: var(--primary); margin: 0; font-size: 26px; }
-        .header p { color: #888; margin: 10px 0 0; font-size: 14px; }
-
-        /* الأقسام والتحاليل */
-        .container { max-width: 550px; margin: 20px auto; padding: 0 15px; }
-        .cat-box { margin-top: 30px; }
-        .cat-name { color: var(--primary); border-right: 3px solid var(--primary); padding-right: 12px; margin-bottom: 15px; font-weight: bold; font-size: 18px; }
-        
-        .test-card { background: var(--card-bg); border-radius: 12px; padding: 15px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #333; transition: 0.3s; }
-        .test-card:hover { border-color: var(--primary); transform: translateY(-2px); }
-        .test-info h4 { margin: 0; font-size: 15px; color: #fff; }
-        .test-info span { font-size: 12px; color: #777; }
-        
-        .order-btn { background: var(--primary); color: #000; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 13px; display: flex; align-items: center; gap: 5px; }
-        
-        /* الفوتر العائم */
-        .footer-action { position: fixed; bottom: 20px; left: 15px; right: 15px; background: var(--primary); color: #000; text-align: center; padding: 15px; border-radius: 15px; text-decoration: none; font-weight: bold; display: flex; justify-content: center; align-items: center; gap: 10px; box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3); z-index: 999; }
-    </style>
 </head>
 <body>
 
-<div class="header">
-    <img src="doctor.jpg" class="doc-img" alt="دكتور جابر شحاتة">
-    <h1>دكتور جابر شحاتة</h1>
-    <p><i class="fas fa-map-marker-alt"></i> أبو المطامير - مساكن الإرشاد</p>
-    <p><i class="fas fa-phone"></i> 01015090991</p>
-</div>
-
-<div class="container">
-    <div class="cat-box">
-        <div class="cat-name">🧬 تحاليل الدم والمناعة</div>
-        <div class="test-card">
-            <div class="test-info"><h4>صورة دم كاملة (CBC)</h4><span>فقر الدم والالتهابات</span></div>
-            <a href="https://wa.me/201015090991?text=طلب تحليل CBC" class="order-btn">اطلب</a>
+    <div class="container">
+        <div class="promo-bar">
+             🌙 خصومات رمضان 40% حصرياً لدى معملنا 🌙
         </div>
-        <div class="test-card"><div class="test-info"><h4>سرعة الترسيب (ESR)</h4></div><a href="https://wa.me/201015090991?text=طلب ESR" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>فصيلة الدم (RH)</h4></div><a href="https://wa.me/201015090991?text=طلب فصيلة دم" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>تحليل ملاريا</h4></div><a href="https://wa.me/201015090991?text=طلب ملاريا" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>زمن النزف والتجلط</h4></div><a href="https://wa.me/201015090991?text=طلب تجلط" class="order-btn">اطلب</a></div>
-    </div>
 
-    <div class="cat-box">
-        <div class="cat-name">🏥 وظائف الكبد والكلى</div>
-        <div class="test-card"><div class="test-info"><h4>إنزيمات كبد (ALT)</h4></div><a href="https://wa.me/201015090991?text=طلب ALT" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>إنزيمات كبد (AST)</h4></div><a href="https://wa.me/201015090991?text=طلب AST" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>الصفراء (Bilirubin)</h4></div><a href="https://wa.me/201015090991?text=طلب صفراء" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>كرياتينين (Creatinine)</h4></div><a href="https://wa.me/201015090991?text=طلب كرياتينين" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>بولينا (Urea)</h4></div><a href="https://wa.me/201015090991?text=طلب بولينا" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>حمض البوليك (النقرس)</h4></div><a href="https://wa.me/201015090991?text=طلب نقرس" class="order-btn">اطلب</a></div>
-    </div>
+        <header>
+            <div class="menu-icon">☰</div>
+            <div class="profile-info">
+                <span class="dr-name">د. جابر شحاته</span>
+                <img src="https://via.placeholder.com/60" alt="Doctor" class="profile-img">
+            </div>
+        </header>
 
-    <div class="cat-box">
-        <div class="cat-name">💎 السكر والدهون</div>
-        <div class="test-card"><div class="test-info"><h4>سكر صائم وفاطر</h4></div><a href="https://wa.me/201015090991?text=طلب سكر" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>سكر تراكمي (HbA1c)</h4></div><a href="https://wa.me/201015090991?text=طلب تراكمي" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>كوليسترول كامل</h4></div><a href="https://wa.me/201015090991?text=طلب كوليسترول" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>دهون ثلاثية</h4></div><a href="https://wa.me/201015090991?text=طلب دهون" class="order-btn">اطلب</a></div>
-    </div>
+        <div class="status-bar">
+            <span class="status-dot"></span>
+            رقم الدكتور متاح للتواصل من 10:00 صباحاً
+        </div>
 
-    <div class="cat-box">
-        <div class="cat-name">🦋 الهرمونات والغدد</div>
-        <div class="test-card"><div class="test-info"><h4>هرمون غدة (TSH)</h4></div><a href="https://wa.me/201015090991?text=طلب TSH" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>هرمون Free T4</h4></div><a href="https://wa.me/201015090991?text=طلب T4" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>هرمون ذكورة</h4></div><a href="https://wa.me/201015090991?text=طلب ذكورة" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>هرمون بروجسترون</h4></div><a href="https://wa.me/201015090991?text=طلب بروجسترون" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>هرمون الحليب</h4></div><a href="https://wa.me/201015090991?text=طلب هرمون حليب" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>حمل رقمي (B-HCG)</h4></div><a href="https://wa.me/201015090991?text=طلب حمل رقمي" class="order-btn">اطلب</a></div>
-    </div>
+        <section class="hero">
+            <h3>معمل</h3>
+            <h1>د/ جابر شحاته</h1>
+            <div class="sub-title">استشاري التحاليل الطبية</div>
+        </section>
 
-    <div class="cat-box">
-        <div class="cat-name">💊 الفيتامينات والمعادن</div>
-        <div class="test-card"><div class="test-info"><h4>فيتامين د</h4></div><a href="https://wa.me/201015090991?text=طلب فيتامين د" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>فيتامين ب12</h4></div><a href="https://wa.me/201015090991?text=طلب B12" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>كالسيوم كلي</h4></div><a href="https://wa.me/201015090991?text=طلب كالسيوم" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>حديد (Iron)</h4></div><a href="https://wa.me/201015090991?text=طلب حديد" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>مخزون حديد</h4></div><a href="https://wa.me/201015090991?text=طلب مخزون حديد" class="order-btn">اطلب</a></div>
-    </div>
+        <div class="main-buttons">
+            <button class="btn btn-black">طلب سحب منزلي VIP</button>
+            
+            <div class="tests-section">
+                <h2 class="section-label">قائمة التحاليل</h2>
+                <div class="tests-grid">
+                    <span>صورة دم كاملة (CBC)</span>
+                    <span>سكر صائم وفاطر</span>
+                    <span>وظائف كبد (ALT, AST)</span>
+                    <span>وظائف كلى (Urea, Creatinine)</span>
+                    <span>تحليل بول</span>
+                    <span>تحليل براز</span>
+                    <span>سرعة ترسيب (ESR)</span>
+                    <span>معدل التجلط (PT, INR)</span>
+                    <span>دهون كاملة (Lipid Profile)</span>
+                    <span>حمض البوليك (Uric Acid)</span>
+                    <span>نقرس</span>
+                    <span>فيتامين د</span>
+                    <span>فيتامين ب 12</span>
+                    <span>هرمون الغدة الدرقية (TSH)</span>
+                    <span>مخزون الحديد (Ferritin)</span>
+                    <span>فصيلة الدم</span>
+                    <span>تحليل حمل (HCG)</span>
+                    <span>هيموجلوبين سكري (HbA1c)</span>
+                    <span>كالسيوم كلي ومتأين</span>
+                    <span>CRP (بروتين التفاعل C)</span>
+                    <span>عامل الروماتويد (RF)</span>
+                    <span>فيروس سي (HCV)</span>
+                    <span>فيروس بي (HBV)</span>
+                    <span>جرثومة المعدة</span>
+                    <span>هرمونات الخصوبة</span>
+                    <span>تحليل نقرس</span>
+                    <span>مستوى البوتاسيوم</span>
+                    <span>مستوى الصوديوم</span>
+                    <span>دلالات أورام</span>
+                    <span>مقاومة أنسولين (HOMA-IR)</span>
+                </div>
+            </div>
+        </div>
 
-    <div class="cat-box">
-        <div class="cat-name">🔬 تحاليل عامة متنوعة</div>
-        <div class="test-card"><div class="test-info"><h4>بول كامل</h4></div><a href="https://wa.me/201015090991?text=طلب بول" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>براز كامل</h4></div><a href="https://wa.me/201015090991?text=طلب براز" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>فيروس C</h4></div><a href="https://wa.me/201015090991?text=طلب فيروس C" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>فيروس B</h4></div><a href="https://wa.me/201015090991?text=طلب فيروس B" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>جرثومة المعدة (دم)</h4></div><a href="https://wa.me/201015090991?text=طلب جرثومة دم" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>جرثومة المعدة (براز)</h4></div><a href="https://wa.me/201015090991?text=طلب جرثومة براز" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>تحليل سائل منوي</h4></div><a href="https://wa.me/201015090991?text=طلب سائل منوي" class="order-btn">اطلب</a></div>
-        <div class="test-card"><div class="test-info"><h4>مسحة كورونا سريعة</h4></div><a href="https://wa.me/201015090991?text=طلب مسحة" class="order-btn">اطلب</a></div>
+        <footer class="bottom-nav">
+            <div class="nav-item">
+                <i class="fas fa-phone"></i>
+                <span>اتصال</span>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-location-dot"></i>
+                <span>موقعنا</span>
+            </div>
+            <div class="nav-item">
+                <i class="fab fa-whatsapp" style="color: #25D366;"></i>
+                <span>واتساب</span>
+            </div>
+        </footer>
     </div>
-</div>
-
-<a href="https://wa.me/201015090991" class="footer-action">
-    <i class="fab fa-whatsapp"></i> احجز ميعادك الآن عبر الواتساب
-</a>
 
 </body>
-  </html>
+</html>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #041025; /* الخلفية الكحلية الغامقة */
+    color: white;
+    text-align: center;
+}
+
+.promo-bar {
+    background: linear-gradient(to bottom, #222, #000); /* الأسود بدلاً من الذهبي */
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom: 1px solid #444;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.profile-img {
+    border-radius: 50%;
+    border: 2px solid #333; /* إطار أسود */
+    width: 60px;
+}
+
+.status-bar {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid #333;
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.status-dot {
+    height: 10px;
+    width: 10px;
+    background-color: #2ecc71;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 8px;
+}
+
+.hero h1 {
+    font-size: 35px;
+    margin: 10px 0;
+}
+
+.sub-title {
+    border: 1px solid #444;
+    display: inline-block;
+    padding: 5px 25px;
+    border-radius: 20px;
+    background: #000;
+}
+
+.btn-black {
+    background: linear-gradient(145deg, #333, #000);
+    color: white;
+    border: none;
+    padding: 20px;
+    width: 85%;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 0;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.tests-section {
+    width: 85%;
+    margin: 0 auto;
+    border: 1px solid #333;
+    border-radius: 15px;
+    padding: 15px;
+    background: rgba(0,0,0,0.2);
+}
+
+.tests-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    text-align: right;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.tests-grid span {
+    border-bottom: 1px solid #222;
+    padding-bottom: 5px;
+}
+
+.bottom-nav {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 10px;
+}
+
+.nav-item {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid #333;
+    padding: 10px 20px;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+}
