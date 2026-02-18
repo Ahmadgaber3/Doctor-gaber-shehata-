@@ -8,17 +8,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --dark: #121212; --card-bg: #1e1e1e; --primary: #2ecc71; --text: #e0e0e0; --gold: #f1c40f; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--dark); margin: 0; padding-bottom: 120px; color: var(--text); overflow-x: hidden; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--dark); margin: 0; padding-bottom: 150px; color: var(--text); overflow-x: hidden; }
         
-        /* القائمة الجانبية */
-        .sidebar { height: 100%; width: 0; position: fixed; z-index: 1001; top: 0; right: 0; background-color: #111; overflow-x: hidden; transition: 0.5s; padding-top: 60px; border-left: 2px solid var(--primary); }
-        .sidebar a { padding: 15px 25px; text-decoration: none; font-size: 18px; color: #bbb; display: block; transition: 0.3s; text-align: right; border-bottom: 1px solid #222; cursor: pointer; }
+        /* القائمة الجانبية - أنيميشن ناعم */
+        .sidebar { height: 100%; width: 0; position: fixed; z-index: 1001; top: 0; right: 0; background-color: #111; overflow-x: hidden; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); padding-top: 60px; border-left: 2px solid var(--primary); }
+        .sidebar a { padding: 15px 25px; text-decoration: none; font-size: 18px; color: #bbb; display: block; transition: 0.2s; text-align: right; border-bottom: 1px solid #222; cursor: pointer; white-space: nowrap; }
         .sidebar a:hover { color: var(--primary); background: #1a1a1a; }
         .sidebar .closebtn { position: absolute; top: 10px; left: 25px; font-size: 36px; color: var(--primary); }
         .menu-icon { font-size: 25px; cursor: pointer; color: var(--primary); position: absolute; top: 20px; right: 20px; z-index: 1000; background: var(--card-bg); padding: 10px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
 
         /* الصفحات المنبثقة */
-        .page-overlay { height: 100%; width: 0; position: fixed; z-index: 2000; top: 0; left: 0; background-color: var(--dark); overflow-y: auto; transition: 0.5s; opacity: 0; }
+        .page-overlay { height: 100%; width: 0; position: fixed; z-index: 2000; top: 0; left: 0; background-color: var(--dark); overflow-y: auto; transition: 0.3s ease; opacity: 0; }
         .page-content { position: relative; width: 90%; max-width: 600px; margin: 40px auto; padding: 20px; color: var(--text); line-height: 1.8; }
         .page-content h2 { color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-bottom: 20px; }
         .close-page { font-size: 30px; color: var(--primary); cursor: pointer; position: sticky; top: 0; float: left; }
@@ -42,7 +42,12 @@
         .order-btn { background: var(--primary); color: #000; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 13px; }
         
         .copyright { text-align: center; margin-top: 50px; padding: 20px; border-top: 1px solid #333; color: #666; font-size: 13px; }
-        .footer-action { position: fixed; bottom: 20px; left: 15px; right: 15px; background: var(--primary); color: #000; text-align: center; padding: 15px; border-radius: 15px; text-decoration: none; font-weight: bold; display: flex; justify-content: center; align-items: center; gap: 10px; box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3); z-index: 999; }
+
+        /* شريط الأزرار الثلاثي الجديد */
+        .footer-nav { position: fixed; bottom: 20px; left: 10px; right: 10px; display: flex; gap: 10px; z-index: 999; }
+        .footer-nav a { flex: 1; background: var(--primary); color: #000; text-align: center; padding: 12px 5px; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 12px; display: flex; flex-direction: column; align-items: center; gap: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: 0.3s; }
+        .footer-nav a i { font-size: 18px; }
+        .footer-nav a:active { transform: scale(0.95); }
     </style>
 </head>
 <body>
@@ -61,11 +66,10 @@
     <div class="page-content">
         <span class="close-page" onclick="hidePage('aboutPage')">×</span>
         <h2>عن معمل دكتور جابر شحاتة</h2>
-        <p>نحن في معمل دكتور جابر شحاتة نلتزم بأعلى معايير الجودة العالمية في مجال التحاليل الطبية. نسعى دائماً لتقديم نتائج دقيقة وموثوقة لمساعدة الأطباء في التشخيص الصحيح وتوفير أفضل رعاية صحية للمرضى.</p>
-        <div class="info-card">✅ نستخدم أحدث الأجهزة المختبرية الأوتوماتيكية بالكامل.</div>
-        <div class="info-card">✅ نطبق نظام رقابة جودة داخلي وخارجي صارم.</div>
-        <div class="info-card">✅ توفير بيئة معقمة تماماً لسحب العينات بأمان.</div>
-        <div class="info-card">✅ سرعة فائقة في استخراج النتائج مع إمكانية إرسالها عبر الواتساب.</div>
+        <p>نحن في معمل دكتور جابر شحاتة نلتزم بأعلى معايير الجودة العالمية في مجال التحاليل الطبية. نسعى دائماً لتقديم نتائج دقيقة وموثوقة لمساعدة الأطباء في التشخيص الصحيح.</p>
+        <div class="info-card">✅ أجهزة مختبرية أوتوماتيكية بالكامل.</div>
+        <div class="info-card">✅ نظام رقابة جودة صارم.</div>
+        <div class="info-card">✅ بيئة معقمة لسحب العينات بأمان.</div>
     </div>
 </div>
 
@@ -73,11 +77,10 @@
     <div class="page-content">
         <span class="close-page" onclick="hidePage('expPage')">×</span>
         <h2>خبرة دكتور جابر شحاتة</h2>
-        <div class="info-card">👨‍⚕️ دكتور متخصص في الكيمياء الحيوية والتحاليل الطبية بخبرة تزيد عن <b>25 عاماً</b>.</div>
-        <p>خلال مسيرته المهنية، أشرف الدكتور جابر على آلاف الحالات التشخيصية المعقدة، وحصل على العديد من الشهادات المعتمدة في إدارة المختبرات الطبية والجودة الشاملة.</p>
-        <div class="info-card">🌟 مدير فني للعديد من المختبرات الكبرى سابقاً.</div>
-        <div class="info-card">🌟 خبير في تحاليل الهرمونات والمناعة المتقدمة.</div>
-        <div class="info-card">🌟 متميز في تقديم الاستشارات الطبية المتعلقة بنتائج التحاليل.</div>
+        <div class="info-card">👨‍⚕️ دكتور متخصص بخبرة تزيد عن <b>25 عاماً</b>.</div>
+        <p>مسيرة حافلة بالإنجازات الطبية والإشراف على آلاف الحالات التشخيصية بدقة متناهية.</p>
+        <div class="info-card">🌟 خبير في تحاليل الهرمونات والمناعة.</div>
+        <div class="info-card">🌟 حاصل على شهادات الجودة في الإدارة الطبية.</div>
     </div>
 </div>
 
@@ -85,12 +88,12 @@
     <div class="page-content">
         <span class="close-page" onclick="hidePage('listPage')">×</span>
         <h2>قائمة التحاليل المتاحة</h2>
-        <div class="info-card"><b>1. تحاليل الدم والمناعة:</b> صورة دم، فصيلة، سرعة ترسيب، ملاريا، تجلط.</div>
-        <div class="info-card"><b>2. وظائف الكبد والكلى:</b> إنزيمات كبد، صفراء، بولينا، كرياتينين، نقرس.</div>
-        <div class="info-card"><b>3. السكر والدهون:</b> سكر صائم وفاطر، تراكمي، كوليسترول، دهون ثلاثية.</div>
-        <div class="info-card"><b>4. الهرمونات والغدد:</b> الغدة الدرقية، ذكورة، بروجسترون، حليب، حمل رقمي.</div>
-        <div class="info-card"><b>5. الفيتامينات والمعادن:</b> فيتامين د، ب12، كالسيوم، حديد، مخزون حديد.</div>
-        <div class="info-card"><b>6. تحاليل عامة:</b> بول، براز، فيروسات C و B، جرثومة معدة، سائل منوي.</div>
+        <div class="info-card"><b>1. تحاليل الدم والمناعة</b></div>
+        <div class="info-card"><b>2. وظائف الكبد والكلى</b></div>
+        <div class="info-card"><b>3. السكر والدهون الشاملة</b></div>
+        <div class="info-card"><b>4. الهرمونات والغدد</b></div>
+        <div class="info-card"><b>5. الفيتامينات والمعادن</b></div>
+        <div class="info-card"><b>6. تحاليل البول والبراز والجرثومة</b></div>
     </div>
 </div>
 
@@ -98,10 +101,9 @@
     <div class="page-content">
         <span class="close-page" onclick="hidePage('tipsPage')">×</span>
         <h2>نصائح هامة قبل التحليل</h2>
-        <div class="info-card"><b>الصيام:</b> يفضل الصيام من 10-12 ساعة لتحاليل السكر الصائم والدهون والكوليسترول.</div>
-        <div class="info-card"><b>الأدوية:</b> يجب إبلاغ المعمل بأي أدوية تتناولها، خاصة أدوية السيولة والغدة الدرقية.</div>
-        <div class="info-card"><b>المجهود:</b> يفضل الراحة التامة قبل سحب العينة وتجنب المجهود العضلي العنيف.</div>
-        <div class="info-card"><b>الماء:</b> يمكنك شرب الماء فقط أثناء الصيام، فهو يساعد في ظهور الأوردة بشكل أفضل.</div>
+        <div class="info-card"><b>الصيام:</b> 10-12 ساعة للسكر والدهون.</div>
+        <div class="info-card"><b>الأدوية:</b> أخبرنا بأي أدوية تتناولها.</div>
+        <div class="info-card"><b>الماء:</b> مسموح شرب الماء أثناء الصيام.</div>
     </div>
 </div>
 
@@ -115,7 +117,7 @@
 <div class="container">
     <div class="ramadan-offer">
         <div class="ramadan-title">🌙 عروض شهر الخير</div>
-        <div style="font-size: 14px; color: #fff; margin-bottom: 15px;">خصم 20% على جميع باقات التحاليل وسحب العينات مجاناً للمنازل.</div>
+        <div style="font-size: 14px; color: #fff; margin-bottom: 15px;">خصم 20% على باقات التحاليل وسحب عينات مجاني.</div>
         <a href="https://wa.me/201015090991?text=استفسار عن عروض رمضان" style="color: var(--gold); text-decoration: none; font-size: 13px; font-weight: bold;">اضغط هنا للتفاصيل ➜</a>
     </div>
 
@@ -183,9 +185,11 @@
     </div>
 </div>
 
-<a href="https://wa.me/201015090991" class="footer-action">
-    <i class="fab fa-whatsapp"></i> احجز ميعادك الآن عبر الواتساب
-</a>
+<div class="footer-nav">
+    <a href="https://wa.me/201015090991"><i class="fab fa-whatsapp"></i>واتساب</a>
+    <a href="tel:01015090991"><i class="fas fa-phone-alt"></i>اتصل بنا</a>
+    <a href="https://maps.google.com/?q=Abu+al+Matamir"><i class="fas fa-map-marker-alt"></i>موقعنا</a>
+</div>
 
 <script>
 function openNav() { document.getElementById("mySidebar").style.width = "250px"; }
@@ -195,4 +199,4 @@ function hidePage(pageId) { document.getElementById(pageId).style.width = "0"; d
 </script>
 
 </body>
-            </html>
+    </html>
