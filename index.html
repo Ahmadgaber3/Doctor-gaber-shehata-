@@ -11,37 +11,37 @@
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--dark); margin: 0; padding-bottom: 120px; color: var(--text); overflow-x: hidden; }
         
         /* القائمة الجانبية */
-        .sidebar { height: 100%; width: 0; position: fixed; z-index: 1000; top: 0; right: 0; background-color: #111; overflow-x: hidden; transition: 0.5s; padding-top: 60px; border-left: 2px solid var(--primary); }
-        .sidebar a { padding: 15px 32px; text-decoration: none; font-size: 18px; color: #818181; display: block; transition: 0.3s; text-align: right; border-bottom: 1px solid #222; }
+        .sidebar { height: 100%; width: 0; position: fixed; z-index: 1001; top: 0; right: 0; background-color: #111; overflow-x: hidden; transition: 0.5s; padding-top: 60px; border-left: 2px solid var(--primary); }
+        .sidebar a { padding: 15px 25px; text-decoration: none; font-size: 18px; color: #bbb; display: block; transition: 0.3s; text-align: right; border-bottom: 1px solid #222; cursor: pointer; }
         .sidebar a:hover { color: var(--primary); background: #1a1a1a; }
         .sidebar .closebtn { position: absolute; top: 10px; left: 25px; font-size: 36px; color: var(--primary); }
-        .menu-icon { font-size: 25px; cursor: pointer; color: var(--primary); position: absolute; top: 20px; right: 20px; z-index: 999; background: var(--card-bg); padding: 10px; border-radius: 10px; }
+        .menu-icon { font-size: 25px; cursor: pointer; color: var(--primary); position: absolute; top: 20px; right: 20px; z-index: 1000; background: var(--card-bg); padding: 10px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
 
-        .header { background: linear-gradient(180deg, #1e1e1e, #121212); padding: 50px 20px 40px; text-align: center; border-bottom: 2px solid var(--primary); }
+        /* الصفحات المنبثقة */
+        .page-overlay { height: 100%; width: 0; position: fixed; z-index: 2000; top: 0; left: 0; background-color: var(--dark); overflow-y: auto; transition: 0.5s; opacity: 0; }
+        .page-content { position: relative; width: 90%; max-width: 600px; margin: 40px auto; padding: 20px; color: var(--text); line-height: 1.8; }
+        .page-content h2 { color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-bottom: 20px; }
+        .close-page { font-size: 30px; color: var(--primary); cursor: pointer; position: sticky; top: 0; float: left; }
+        .info-card { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 15px; border-right: 4px solid var(--primary); }
+
+        /* الهيدر والعناصر الأساسية */
+        .header { background: linear-gradient(180deg, #1e1e1e, #121212); padding: 60px 20px 40px; text-align: center; border-bottom: 2px solid var(--primary); }
         .doc-img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--primary); margin-bottom: 15px; padding: 5px; object-fit: cover; }
         .header h1 { color: var(--primary); margin: 0; font-size: 26px; }
         .header p { color: #888; margin: 10px 0 0; font-size: 14px; }
 
         .container { max-width: 550px; margin: 20px auto; padding: 0 15px; }
-        
         .ramadan-offer { background: linear-gradient(135deg, #1a472a, #121212); border: 2px solid var(--gold); border-radius: 15px; padding: 20px; margin-bottom: 30px; text-align: center; }
         .ramadan-title { color: var(--gold); font-size: 20px; font-weight: bold; margin-bottom: 10px; }
-        .ramadan-text { font-size: 14px; color: #fff; margin-bottom: 15px; }
-        .offer-badge { background: var(--gold); color: #000; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 14px; display: inline-block; }
-
+        
         .cat-box { margin-top: 30px; }
         .cat-name { color: var(--primary); border-right: 3px solid var(--primary); padding-right: 12px; margin-bottom: 15px; font-weight: bold; font-size: 18px; display: flex; align-items: center; gap: 10px; }
         
         .test-card { background: var(--card-bg); border-radius: 12px; padding: 15px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #333; transition: 0.3s; }
         .test-card:hover { border-color: var(--primary); transform: translateY(-2px); }
-        .test-info h4 { margin: 0; font-size: 15px; color: #fff; }
-        .test-info span { font-size: 12px; color: #777; }
-        
-        .order-btn { background: var(--primary); color: #000; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 13px; display: flex; align-items: center; gap: 5px; }
+        .order-btn { background: var(--primary); color: #000; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 13px; }
         
         .copyright { text-align: center; margin-top: 50px; padding: 20px; border-top: 1px solid #333; color: #666; font-size: 13px; }
-        .copyright b { color: var(--primary); }
-
         .footer-action { position: fixed; bottom: 20px; left: 15px; right: 15px; background: var(--primary); color: #000; text-align: center; padding: 15px; border-radius: 15px; text-decoration: none; font-weight: bold; display: flex; justify-content: center; align-items: center; gap: 10px; box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3); z-index: 999; }
     </style>
 </head>
@@ -49,13 +49,61 @@
 
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-  <a href="#"><i class="fas fa-microscope"></i> عن المعمل</a>
-  <a href="#"><i class="fas fa-user-md"></i> خبرة الدكتور</a>
-  <a href="#"><i class="fas fa-list-ul"></i> التحاليل الموجودة</a>
-  <a href="#"><i class="fas fa-lightbulb"></i> أهم النصائح</a>
+  <a onclick="showPage('aboutPage')"><i class="fas fa-microscope"></i> عن المعمل</a>
+  <a onclick="showPage('expPage')"><i class="fas fa-user-md"></i> خبرة الدكتور</a>
+  <a onclick="showPage('listPage')"><i class="fas fa-list-ul"></i> التحاليل الموجودة</a>
+  <a onclick="showPage('tipsPage')"><i class="fas fa-lightbulb"></i> أهم النصائح</a>
 </div>
 
 <span class="menu-icon" onclick="openNav()"><i class="fas fa-bars"></i></span>
+
+<div id="aboutPage" class="page-overlay">
+    <div class="page-content">
+        <span class="close-page" onclick="hidePage('aboutPage')">×</span>
+        <h2>عن معمل دكتور جابر شحاتة</h2>
+        <p>نحن في معمل دكتور جابر شحاتة نلتزم بأعلى معايير الجودة العالمية في مجال التحاليل الطبية. نسعى دائماً لتقديم نتائج دقيقة وموثوقة لمساعدة الأطباء في التشخيص الصحيح وتوفير أفضل رعاية صحية للمرضى.</p>
+        <div class="info-card">✅ نستخدم أحدث الأجهزة المختبرية الأوتوماتيكية بالكامل.</div>
+        <div class="info-card">✅ نطبق نظام رقابة جودة داخلي وخارجي صارم.</div>
+        <div class="info-card">✅ توفير بيئة معقمة تماماً لسحب العينات بأمان.</div>
+        <div class="info-card">✅ سرعة فائقة في استخراج النتائج مع إمكانية إرسالها عبر الواتساب.</div>
+    </div>
+</div>
+
+<div id="expPage" class="page-overlay">
+    <div class="page-content">
+        <span class="close-page" onclick="hidePage('expPage')">×</span>
+        <h2>خبرة دكتور جابر شحاتة</h2>
+        <div class="info-card">👨‍⚕️ دكتور متخصص في الكيمياء الحيوية والتحاليل الطبية بخبرة تزيد عن <b>25 عاماً</b>.</div>
+        <p>خلال مسيرته المهنية، أشرف الدكتور جابر على آلاف الحالات التشخيصية المعقدة، وحصل على العديد من الشهادات المعتمدة في إدارة المختبرات الطبية والجودة الشاملة.</p>
+        <div class="info-card">🌟 مدير فني للعديد من المختبرات الكبرى سابقاً.</div>
+        <div class="info-card">🌟 خبير في تحاليل الهرمونات والمناعة المتقدمة.</div>
+        <div class="info-card">🌟 متميز في تقديم الاستشارات الطبية المتعلقة بنتائج التحاليل.</div>
+    </div>
+</div>
+
+<div id="listPage" class="page-overlay">
+    <div class="page-content">
+        <span class="close-page" onclick="hidePage('listPage')">×</span>
+        <h2>قائمة التحاليل المتاحة</h2>
+        <div class="info-card"><b>1. تحاليل الدم والمناعة:</b> صورة دم، فصيلة، سرعة ترسيب، ملاريا، تجلط.</div>
+        <div class="info-card"><b>2. وظائف الكبد والكلى:</b> إنزيمات كبد، صفراء، بولينا، كرياتينين، نقرس.</div>
+        <div class="info-card"><b>3. السكر والدهون:</b> سكر صائم وفاطر، تراكمي، كوليسترول، دهون ثلاثية.</div>
+        <div class="info-card"><b>4. الهرمونات والغدد:</b> الغدة الدرقية، ذكورة، بروجسترون، حليب، حمل رقمي.</div>
+        <div class="info-card"><b>5. الفيتامينات والمعادن:</b> فيتامين د، ب12، كالسيوم، حديد، مخزون حديد.</div>
+        <div class="info-card"><b>6. تحاليل عامة:</b> بول، براز، فيروسات C و B، جرثومة معدة، سائل منوي.</div>
+    </div>
+</div>
+
+<div id="tipsPage" class="page-overlay">
+    <div class="page-content">
+        <span class="close-page" onclick="hidePage('tipsPage')">×</span>
+        <h2>نصائح هامة قبل التحليل</h2>
+        <div class="info-card"><b>الصيام:</b> يفضل الصيام من 10-12 ساعة لتحاليل السكر الصائم والدهون والكوليسترول.</div>
+        <div class="info-card"><b>الأدوية:</b> يجب إبلاغ المعمل بأي أدوية تتناولها، خاصة أدوية السيولة والغدة الدرقية.</div>
+        <div class="info-card"><b>المجهود:</b> يفضل الراحة التامة قبل سحب العينة وتجنب المجهود العضلي العنيف.</div>
+        <div class="info-card"><b>الماء:</b> يمكنك شرب الماء فقط أثناء الصيام، فهو يساعد في ظهور الأوردة بشكل أفضل.</div>
+    </div>
+</div>
 
 <div class="header">
     <img src="doctor.jpg" class="doc-img" alt="دكتور جابر شحاتة">
@@ -65,12 +113,10 @@
 </div>
 
 <div class="container">
-    
     <div class="ramadan-offer">
         <div class="ramadan-title">🌙 عروض شهر الخير</div>
-        <div class="ramadan-text">بمناسبة شهر رمضان المبارك، خصم 20% على جميع باقات التحاليل الشاملة وسحب العينات مجاناً للمنازل.</div>
-        <div class="offer-badge">رمضان كريم</div>
-        <a href="https://wa.me/201015090991?text=استفسار عن عروض رمضان" style="display: block; margin-top: 15px; color: var(--gold); text-decoration: none; font-size: 13px; font-weight: bold;">اضغط هنا للتفاصيل ➜</a>
+        <div style="font-size: 14px; color: #fff; margin-bottom: 15px;">خصم 20% على جميع باقات التحاليل وسحب العينات مجاناً للمنازل.</div>
+        <a href="https://wa.me/201015090991?text=استفسار عن عروض رمضان" style="color: var(--gold); text-decoration: none; font-size: 13px; font-weight: bold;">اضغط هنا للتفاصيل ➜</a>
     </div>
 
     <div class="cat-box">
@@ -144,7 +190,9 @@
 <script>
 function openNav() { document.getElementById("mySidebar").style.width = "250px"; }
 function closeNav() { document.getElementById("mySidebar").style.width = "0"; }
+function showPage(pageId) { closeNav(); document.getElementById(pageId).style.width = "100%"; document.getElementById(pageId).style.opacity = "1"; document.body.style.overflow = "hidden"; }
+function hidePage(pageId) { document.getElementById(pageId).style.width = "0"; document.getElementById(pageId).style.opacity = "0"; document.body.style.overflow = "auto"; }
 </script>
 
 </body>
-    </html>
+            </html>
