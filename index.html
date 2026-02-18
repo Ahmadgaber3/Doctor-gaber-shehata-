@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --dark: #121212; --card-bg: #1e1e1e; --primary: #2ecc71; --text: #e0e0e0; --gold: #f1c40f; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--dark); margin: 0; padding-bottom: 100px; color: var(--text); }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--dark); margin: 0; padding-bottom: 120px; color: var(--text); }
         
         .header { background: linear-gradient(180deg, #1e1e1e, #121212); padding: 40px 20px; text-align: center; border-bottom: 2px solid var(--primary); }
         .doc-img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--primary); margin-bottom: 15px; padding: 5px; object-fit: cover; }
@@ -16,9 +16,8 @@
 
         .container { max-width: 550px; margin: 20px auto; padding: 0 15px; }
         
-        /* قسم عروض رمضان الجديد */
-        .ramadan-offer { background: linear-gradient(135deg, #1a472a, #121212); border: 2px solid var(--gold); border-radius: 15px; padding: 20px; margin-bottom: 30px; text-align: center; position: relative; overflow: hidden; }
-        .ramadan-offer::before { content: "\f6a0"; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; top: 10px; right: 10px; color: var(--gold); opacity: 0.2; font-size: 40px; }
+        /* قسم عروض رمضان بدون أيقونة الصندوق */
+        .ramadan-offer { background: linear-gradient(135deg, #1a472a, #121212); border: 2px solid var(--gold); border-radius: 15px; padding: 20px; margin-bottom: 30px; text-align: center; }
         .ramadan-title { color: var(--gold); font-size: 20px; font-weight: bold; margin-bottom: 10px; }
         .ramadan-text { font-size: 14px; color: #fff; margin-bottom: 15px; }
         .offer-badge { background: var(--gold); color: #000; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 14px; display: inline-block; }
@@ -33,6 +32,9 @@
         
         .order-btn { background: var(--primary); color: #000; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 13px; display: flex; align-items: center; gap: 5px; }
         
+        .copyright { text-align: center; margin-top: 50px; padding: 20px; border-top: 1px solid #333; color: #666; font-size: 13px; }
+        .copyright b { color: var(--primary); }
+
         .footer-action { position: fixed; bottom: 20px; left: 15px; right: 15px; background: var(--primary); color: #000; text-align: center; padding: 15px; border-radius: 15px; text-decoration: none; font-weight: bold; display: flex; justify-content: center; align-items: center; gap: 10px; box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3); z-index: 999; }
     </style>
 </head>
@@ -56,10 +58,7 @@
 
     <div class="cat-box">
         <div class="cat-name">🧬 تحاليل الدم والمناعة</div>
-        <div class="test-card">
-            <div class="test-info"><h4>صورة دم كاملة (CBC)</h4><span>فقر الدم والالتهابات</span></div>
-            <a href="https://wa.me/201015090991?text=طلب تحليل CBC" class="order-btn">اطلب</a>
-        </div>
+        <div class="test-card"><div class="test-info"><h4>صورة دم كاملة (CBC)</h4><span>فقر الدم والالتهابات</span></div><a href="https://wa.me/201015090991?text=طلب تحليل CBC" class="order-btn">اطلب</a></div>
         <div class="test-card"><div class="test-info"><h4>سرعة الترسيب (ESR)</h4></div><a href="https://wa.me/201015090991?text=طلب ESR" class="order-btn">اطلب</a></div>
         <div class="test-card"><div class="test-info"><h4>فصيلة الدم (RH)</h4></div><a href="https://wa.me/201015090991?text=طلب فصيلة دم" class="order-btn">اطلب</a></div>
         <div class="test-card"><div class="test-info"><h4>تحليل ملاريا</h4></div><a href="https://wa.me/201015090991?text=طلب ملاريا" class="order-btn">اطلب</a></div>
@@ -114,6 +113,11 @@
         <div class="test-card"><div class="test-info"><h4>تحليل سائل منوي</h4></div><a href="https://wa.me/201015090991?text=طلب سائل منوي" class="order-btn">اطلب</a></div>
         <div class="test-card"><div class="test-info"><h4>مسحة كورونا سريعة</h4></div><a href="https://wa.me/201015090991?text=طلب مسحة" class="order-btn">اطلب</a></div>
     </div>
+
+    <div class="copyright">
+        © 2026 All Rights Reserved<br>
+        Designed by <b>Eng Ahmad Gaber</b>
+    </div>
 </div>
 
 <a href="https://wa.me/201015090991" class="footer-action">
@@ -121,4 +125,4 @@
 </a>
 
 </body>
-            </html>
+    </html>
