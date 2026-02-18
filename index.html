@@ -4,26 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>دكتور جابر شحاتة | مختبر تحاليل طبية</title>
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/822/822118.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --dark: #121212; --card-bg: #1e1e1e; --primary: #2ecc71; --text: #e0e0e0; --gold: #f1c40f; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--dark); margin: 0; padding-bottom: 120px; color: var(--text); }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--dark); margin: 0; padding-bottom: 120px; color: var(--text); overflow-x: hidden; }
         
-        .header { background: linear-gradient(180deg, #1e1e1e, #121212); padding: 40px 20px; text-align: center; border-bottom: 2px solid var(--primary); }
+        /* القائمة الجانبية */
+        .sidebar { height: 100%; width: 0; position: fixed; z-index: 1000; top: 0; right: 0; background-color: #111; overflow-x: hidden; transition: 0.5s; padding-top: 60px; border-left: 2px solid var(--primary); }
+        .sidebar a { padding: 15px 32px; text-decoration: none; font-size: 18px; color: #818181; display: block; transition: 0.3s; text-align: right; border-bottom: 1px solid #222; }
+        .sidebar a:hover { color: var(--primary); background: #1a1a1a; }
+        .sidebar .closebtn { position: absolute; top: 10px; left: 25px; font-size: 36px; color: var(--primary); }
+        .menu-icon { font-size: 25px; cursor: pointer; color: var(--primary); position: absolute; top: 20px; right: 20px; z-index: 999; background: var(--card-bg); padding: 10px; border-radius: 10px; }
+
+        .header { background: linear-gradient(180deg, #1e1e1e, #121212); padding: 50px 20px 40px; text-align: center; border-bottom: 2px solid var(--primary); }
         .doc-img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--primary); margin-bottom: 15px; padding: 5px; object-fit: cover; }
         .header h1 { color: var(--primary); margin: 0; font-size: 26px; }
         .header p { color: #888; margin: 10px 0 0; font-size: 14px; }
 
         .container { max-width: 550px; margin: 20px auto; padding: 0 15px; }
         
-        /* قسم عروض رمضان بدون أيقونة الصندوق */
         .ramadan-offer { background: linear-gradient(135deg, #1a472a, #121212); border: 2px solid var(--gold); border-radius: 15px; padding: 20px; margin-bottom: 30px; text-align: center; }
         .ramadan-title { color: var(--gold); font-size: 20px; font-weight: bold; margin-bottom: 10px; }
         .ramadan-text { font-size: 14px; color: #fff; margin-bottom: 15px; }
         .offer-badge { background: var(--gold); color: #000; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 14px; display: inline-block; }
 
         .cat-box { margin-top: 30px; }
-        .cat-name { color: var(--primary); border-right: 3px solid var(--primary); padding-right: 12px; margin-bottom: 15px; font-weight: bold; font-size: 18px; }
+        .cat-name { color: var(--primary); border-right: 3px solid var(--primary); padding-right: 12px; margin-bottom: 15px; font-weight: bold; font-size: 18px; display: flex; align-items: center; gap: 10px; }
         
         .test-card { background: var(--card-bg); border-radius: 12px; padding: 15px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #333; transition: 0.3s; }
         .test-card:hover { border-color: var(--primary); transform: translateY(-2px); }
@@ -39,6 +46,16 @@
     </style>
 </head>
 <body>
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="#"><i class="fas fa-microscope"></i> عن المعمل</a>
+  <a href="#"><i class="fas fa-user-md"></i> خبرة الدكتور</a>
+  <a href="#"><i class="fas fa-list-ul"></i> التحاليل الموجودة</a>
+  <a href="#"><i class="fas fa-lightbulb"></i> أهم النصائح</a>
+</div>
+
+<span class="menu-icon" onclick="openNav()"><i class="fas fa-bars"></i></span>
 
 <div class="header">
     <img src="doctor.jpg" class="doc-img" alt="دكتور جابر شحاتة">
@@ -123,6 +140,11 @@
 <a href="https://wa.me/201015090991" class="footer-action">
     <i class="fab fa-whatsapp"></i> احجز ميعادك الآن عبر الواتساب
 </a>
+
+<script>
+function openNav() { document.getElementById("mySidebar").style.width = "250px"; }
+function closeNav() { document.getElementById("mySidebar").style.width = "0"; }
+</script>
 
 </body>
     </html>
