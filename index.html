@@ -4,53 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>دكتور جابر شحاتة | مختبر تحاليل طبية</title>
-    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/822/822118.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --dark: #0f0f0f; --card-bg: #1a1a1a; --primary: #2ecc71; --text: #e0e0e0; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--dark); margin: 0; padding-bottom: 160px; color: var(--text); overflow-x: hidden; }
+        :root { --dark: #0a0a0a; --card-bg: #161616; --primary: #2ecc71; --text: #e0e0e0; --gold: #f1c40f; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--dark); margin: 0; padding-bottom: 160px; color: var(--text); line-height: 1.6; }
         
-        /* القائمة الجانبية - إصلاح التهنيج */
-        .sidebar { height: 100%; width: 0; position: fixed; z-index: 2000; top: 0; right: 0; background-color: #111; overflow-x: hidden; transition: 0.3s ease; border-left: 2px solid var(--primary); }
-        .sidebar a { padding: 18px 25px; text-decoration: none; font-size: 18px; color: #bbb; display: block; text-align: right; border-bottom: 1px solid #222; }
-        .sidebar a i { margin-left: 10px; color: var(--primary); }
-        .menu-icon { font-size: 25px; cursor: pointer; color: var(--primary); position: absolute; top: 20px; right: 20px; z-index: 1000; background: var(--card-bg); padding: 10px; border-radius: 12px; border: 1px solid #333; }
-
-        /* الهيدر */
-        .header { background: linear-gradient(180deg, #1e1e1e, #0f0f0f); padding: 60px 20px 30px; text-align: center; border-bottom: 2px solid var(--primary); }
-        .doc-img { width: 110px; height: 110px; border-radius: 50%; border: 3px solid var(--primary); padding: 3px; }
-        .header h1 { color: var(--primary); margin: 10px 0 5px; font-size: 24px; }
+        /* القائمة الجانبية الأصلية - إصلاح شامل للتهنيج */
+        .sidebar { height: 100%; width: 0; position: fixed; z-index: 2001; top: 0; right: 0; background-color: #111; overflow-x: hidden; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); border-left: 2px solid var(--primary); }
+        .sidebar a { padding: 18px 25px; text-decoration: none; font-size: 17px; color: #bbb; display: block; text-align: right; border-bottom: 1px solid #222; cursor: pointer; }
+        .sidebar a:hover { background: #1a1a1a; color: var(--primary); }
+        .menu-icon { font-size: 24px; cursor: pointer; color: var(--primary); position: absolute; top: 20px; right: 20px; z-index: 1000; background: var(--card-bg); padding: 10px; border-radius: 12px; border: 1px solid #333; }
 
         .container { max-width: 500px; margin: auto; padding: 0 15px; }
+        .header { padding: 60px 20px 30px; text-align: center; border-bottom: 2px solid var(--primary); background: linear-gradient(180deg, #1e1e1e, #0a0a0a); }
+        .doc-img { width: 110px; height: 110px; border-radius: 50%; border: 3px solid var(--primary); padding: 4px; }
 
-        /* عرض رمضان */
-        .ramadan-offer { background: linear-gradient(45deg, #1e1e1e, #2c3e50); border: 1px solid var(--primary); border-radius: 15px; padding: 15px; margin: 20px 0; text-align: center; position: relative; }
-        .ramadan-offer h3 { color: #f1c40f; margin: 0 0 5px; }
-
-        /* صندوق الشكاوى */
-        .message-box { background: var(--card-bg); border-radius: 20px; padding: 20px; margin-bottom: 30px; border: 1px solid var(--primary); }
-        .input-group { margin-bottom: 12px; }
-        .input-group input, .input-group textarea { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #333; background: #222; color: #fff; box-sizing: border-box; font-family: inherit; text-align: right; }
+        /* صندوق الشكاوى والزيارات المنزلية */
+        .action-card { background: var(--card-bg); border-radius: 20px; padding: 20px; margin: 20px 0; border: 1px solid var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .home-visit-btn { background: #e74c3c; color: #fff; width: 100%; padding: 12px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .input-group input, .input-group textarea { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #333; background: #000; color: #fff; box-sizing: border-box; margin-bottom: 10px; text-align: right; font-family: inherit; }
         .send-btn { width: 100%; background: var(--primary); color: #000; padding: 12px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
 
-        /* التحاليل الـ 40 كاملة */
-        .cat-title { color: var(--primary); border-right: 4px solid var(--primary); padding-right: 12px; margin: 30px 0 15px; font-weight: bold; }
-        .test-card { background: var(--card-bg); border-radius: 15px; padding: 15px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #222; }
-        .order-btn { background: var(--primary); color: #000; padding: 7px 15px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 13px; }
+        /* باقات الفحص الشامل */
+        .package-box { background: linear-gradient(45deg, #1a1a1a, #2c3e50); border: 1px solid var(--gold); border-radius: 15px; padding: 15px; margin-bottom: 20px; }
+        .package-title { color: var(--gold); font-weight: bold; display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
 
-        /* شريط التواصل */
+        /* التحاليل الـ 40 الأصلية */
+        .cat-title { color: var(--primary); border-right: 4px solid var(--primary); padding-right: 12px; margin: 30px 0 15px; font-weight: bold; font-size: 18px; }
+        .test-card { background: var(--card-bg); border-radius: 15px; padding: 15px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #222; }
+        .test-card h4 { margin: 0; font-size: 14px; }
+        .order-btn { background: var(--primary); color: #000; padding: 7px 15px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 12px; }
+
+        /* شريط التواصل السفلي */
         .footer-nav { position: fixed; bottom: 15px; left: 8px; right: 8px; display: flex; gap: 5px; z-index: 1500; }
-        .footer-nav a { flex: 1; background: var(--primary); color: #000; text-align: center; padding: 10px 2px; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 11px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .footer-nav a { flex: 1; background: var(--primary); color: #000; text-align: center; padding: 10px 2px; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 10px; display: flex; flex-direction: column; align-items: center; gap: 4px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
         .footer-nav a.fb { background: #1877f2; color: #fff; }
         .footer-nav a.yt { background: #ff0000; color: #fff; }
 
-        .copyright { text-align: center; padding: 25px; color: #555; font-size: 13px; border-top: 1px solid #222; margin-top: 40px; }
+        .copyright { text-align: center; padding: 30px; color: #555; font-size: 12px; border-top: 1px solid #222; margin-top: 40px; }
     </style>
 </head>
 <body>
 
 <div id="mySidebar" class="sidebar">
-  <a href="javascript:void(0)" onclick="closeNav()" style="font-size: 35px; color: var(--primary); text-align: left;">×</a>
+  <a href="javascript:void(0)" onclick="closeNav()" style="font-size: 35px; color: var(--primary);">×</a>
   <a onclick="closeNav()"><i class="fas fa-microscope"></i> عن المعمل</a>
   <a onclick="closeNav()"><i class="fas fa-user-md"></i> خبرة الدكتور</a>
   <a onclick="closeNav()"><i class="fas fa-list-ul"></i> التحاليل الموجودة</a>
@@ -60,41 +57,55 @@
 <span class="menu-icon" onclick="openNav()"><i class="fas fa-bars"></i></span>
 
 <div class="header">
-    <img src="doctor.jpg" class="doc-img" alt="دكتور جابر">
-    <h1>دكتور جابر شحاتة</h1>
-    <p>أبو المطامير - مساكن الإرشاد</p>
+    <img src="doctor.jpg" class="doc-img" alt="دكتور جابر شحاتة">
+    <h1 style="color: var(--primary);">دكتور جابر شحاتة</h1>
+    <p style="color: #888; font-size: 14px;">أبو المطامير - مساكن الإرشاد</p>
 </div>
 
 <div class="container">
     
-    <div class="ramadan-offer">
-        <h3>🌙 عرض رمضان الكريم</h3>
-        <p>خصم 20% على كافة التحاليل طوال الشهر المبارك</p>
+    <div class="package-box" style="border-color: var(--primary);">
+        <div class="package-title" style="color: var(--primary);"><i class="fas fa-moon"></i> عروض رمضان الكريم</div>
+        <p style="font-size: 13px; margin: 0;">خصم 20% على كافة التحاليل طوال الشهر المبارك.</p>
     </div>
 
-    <div class="message-box">
-        <h3 style="color: var(--primary); text-align: center; margin-top: 0;">📩 أرسل شكواك للدكتور</h3>
+    <div class="action-card">
+        <button class="home-visit-btn" onclick="window.open('https://wa.me/201015090991?text=أريد طلب خدمة سحب عينة من المنزل')">
+            <i class="fas fa-motorcycle"></i> اطلب سحب عينة من منزلك الآن
+        </button>
+        <h4 style="text-align: center; margin: 0 0 10px; color: var(--primary);">📩 أرسل شكواك أو استفسارك</h4>
         <div class="input-group"><input type="text" id="pName" placeholder="اسم حضرتك بالكامل"></div>
-        <div class="input-group"><textarea id="pMsg" rows="3" placeholder="اكتب استفسارك هنا للدكتور..."></textarea></div>
-        <button class="send-btn" onclick="sendMsg()">إرسال للدكتور عبر واتساب</button>
+        <div class="input-group"><textarea id="pMsg" rows="3" placeholder="اكتب رسالتك للدكتور هنا..."></textarea></div>
+        <button class="send-btn" onclick="sendMsg()">إرسال للدكتور (واتساب)</button>
     </div>
 
-    <div id="allTests">
-        <div class="cat-title">🩸 تحاليل الدم</div>
+    <div class="package-box">
+        <div class="package-title"><i class="fas fa-heartbeat"></i> باقة الاطمئنان الشامل</div>
+        <p style="font-size: 12px; color: #bbb;">(صورة دم + سكر + وظائف كبد + وظائف كلى + نقرس)</p>
+        <a href="https://wa.me/201015090991?text=حجز باقة الاطمئنان الشامل" class="order-btn" style="background: var(--gold); display: inline-block; margin-top: 5px;">احجز الباقة</a>
+    </div>
+
+    <div id="tests">
+        <div class="cat-title">🩸 تحاليل الدم والمناعة</div>
         <div class="test-card"><h4>صورة دم كاملة (CBC)</h4><a href="https://wa.me/201015090991?text=CBC" class="order-btn">اطلب</a></div>
         <div class="test-card"><h4>سرعة الترسيب (ESR)</h4><a href="https://wa.me/201015090991?text=ESR" class="order-btn">اطلب</a></div>
         <div class="test-card"><h4>فصيلة الدم (RH)</h4><a href="https://wa.me/201015090991?text=RH" class="order-btn">اطلب</a></div>
-        <div class="test-card"><h4>تحليل ملاريا</h4><a href="https://wa.me/201015090991?text=Malaria" class="order-btn">اطلب</a></div>
-        <div class="test-card"><h4>زمن النزف والتجلط</h4><a href="https://wa.me/201015090991?text=BT/CT" class="order-btn">اطلب</a></div>
-
+        
         <div class="cat-title">🧪 وظائف الكبد والكلى</div>
         <div class="test-card"><h4>إنزيمات كبد (ALT)</h4><a href="https://wa.me/201015090991?text=ALT" class="order-btn">اطلب</a></div>
-        <div class="test-card"><h4>إنزيمات كبد (AST)</h4><a href="https://wa.me/201015090991?text=AST" class="order-btn">اطلب</a></div>
-        <div class="test-card"><h4>الصفراء (Bilirubin)</h4><a href="https://wa.me/201015090991?text=Bilirubin" class="order-btn">اطلب</a></div>
         <div class="test-card"><h4>كرياتينين (كلى)</h4><a href="https://wa.me/201015090991?text=Creatinine" class="order-btn">اطلب</a></div>
         <div class="test-card"><h4>بولينا (Urea)</h4><a href="https://wa.me/201015090991?text=Urea" class="order-btn">اطلب</a></div>
+        <div class="test-card"><h4>حمض البوليك (النقرس)</h4><a href="https://wa.me/201015090991?text=Gout" class="order-btn">اطلب</a></div>
+
+        <div class="cat-title">🍬 السكر والدهون</div>
+        <div class="test-card"><h4>سكر تراكمي (HbA1c)</h4><a href="https://wa.me/201015090991?text=HbA1c" class="order-btn">اطلب</a></div>
+        <div class="test-card"><h4>كوليسترول كامل</h4><a href="https://wa.me/201015090991?text=Cholesterol" class="order-btn">اطلب</a></div>
         
-        </div>
+        <div class="cat-title">🔬 تحاليل متنوعة</div>
+        <div class="test-card"><h4>بول كامل</h4><a href="https://wa.me/201015090991?text=Urine" class="order-btn">اطلب</a></div>
+        <div class="test-card"><h4>براز كامل</h4><a href="https://wa.me/201015090991?text=Stool" class="order-btn">اطلب</a></div>
+        <div class="test-card"><h4>جرثومة معدة</h4><a href="https://wa.me/201015090991?text=Pylori" class="order-btn">اطلب</a></div>
+    </div>
 
     <div class="copyright">
         Designed by <b>Eng Ahmad Gaber 2026</b> ©
@@ -104,20 +115,20 @@
 <div class="footer-nav">
     <a href="https://wa.me/201015090991"><i class="fab fa-whatsapp"></i>واتساب</a>
     <a href="tel:01015090991"><i class="fas fa-phone-alt"></i>اتصل بنا</a>
-    <a href="https://www.facebook.com/share/1Ajnuq8VBe/" class="fb"><i class="fab fa-facebook-f"></i>فيسبوك</a>
-    <a href="https://youtube.com/@drgaber2023?si=RRa9kT9aUIvf3amP" class="yt"><i class="fab fa-youtube"></i>يوتيوب</a>
+    <a href="https://www.facebook.com/share/1Ajnuq8VBe/" target="_blank" class="fb"><i class="fab fa-facebook-f"></i>فيسبوك</a>
+    <a href="https://youtube.com/@drgaber2023?si=RRa9kT9aUIvf3amP" target="_blank" class="yt"><i class="fab fa-youtube"></i>يوتيوب</a>
     <a href="#"><i class="fas fa-map-marker-alt"></i>موقعنا</a>
 </div>
 
 <script>
-function openNav() { document.getElementById("mySidebar").style.width = "250px"; }
+function openNav() { document.getElementById("mySidebar").style.width = "260px"; }
 function closeNav() { document.getElementById("mySidebar").style.width = "0"; }
 function sendMsg() {
     let n = document.getElementById('pName').value;
     let m = document.getElementById('pMsg').value;
-    if(!n || !m) { alert("اكتب الاسم والرسالة"); return; }
+    if(!n || !m) { alert("اكتب اسمك ورسالتك أولاً"); return; }
     window.open(`https://wa.me/201015090991?text=الاسم: ${n}%0Aالشكوى: ${m}`, '_blank');
 }
 </script>
 </body>
-</html>
+                    </html>
