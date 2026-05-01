@@ -1,224 +1,264 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOSTA GOLDEN SYSTEM | مطعم توستا</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
-        :root { --gold: #d4af37; --gold-light: #f1d592; --red: #ff0000; --dark-bg: #050505; --card-bg: #111111; }
-        body { font-family: 'Cairo', sans-serif; background-color: var(--dark-bg); color: #fff; margin: 0; padding-bottom: 100px; overflow-x: hidden; }
-        
-        /* Header & Luxury Logo */
-        .header { padding: 50px 20px; text-align: center; background: radial-gradient(circle, #2a0000 0%, #050505 100%); border-bottom: 4px solid var(--gold); position: relative; }
-        .logo-wrap { display: inline-block; padding: 15px; border: 3px double var(--gold); border-radius: 50% 20% 50% 20%; box-shadow: 0 0 30px rgba(255, 0, 0, 0.4); background: #000; transition: 0.5s; }
-        .logo-wrap:hover { transform: rotate(5deg) scale(1.1); box-shadow: 0 0 50px var(--red); }
-        .res-title { font-size: 45px; font-weight: 900; color: var(--gold); margin: 20px 0 5px; text-shadow: 0 0 10px var(--gold); }
-        .sub-title { color: var(--red); font-weight: bold; letter-spacing: 3px; font-size: 18px; }
-
-        /* Floating Luxury Cart */
-        .cart-trigger { position: fixed; bottom: 30px; left: 30px; background: linear-gradient(45deg, var(--gold), #ffdf00); color: #000; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 9999; box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px var(--gold); cursor: pointer; border: 3px solid #fff; }
-        #cart-badge { position: absolute; top: -5px; right: -5px; background: var(--red); color: #fff; font-size: 14px; padding: 4px 10px; border-radius: 50%; font-weight: bold; box-shadow: 0 0 10px var(--red); }
-
-        /* Smooth Category Tabs */
-        .menu-nav { display: flex; overflow-x: auto; background: #0a0a0a; padding: 15px; sticky: top; top: 0; z-index: 2000; border-bottom: 2px solid #222; scrollbar-width: none; }
-        .nav-link { background: transparent; color: #888; border: 1.5px solid #333; padding: 10px 25px; border-radius: 50px; margin-left: 10px; cursor: pointer; white-space: nowrap; font-weight: bold; transition: 0.4s; }
-        .nav-link.active { background: var(--red); color: #fff; border-color: var(--red); box-shadow: 0 0 15px var(--red); }
-
-        /* Grid System for Items */
-        .section-container { padding: 20px; max-width: 1200px; margin: auto; }
-        .cat-heading { font-size: 28px; color: var(--gold); border-right: 6px solid var(--red); padding-right: 15px; margin: 40px 0 25px; text-shadow: 0 0 5px #000; }
-        
-        .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-        .item-luxury-card { background: var(--card-bg); border-radius: 25px; padding: 20px; border: 1px solid #222; position: relative; transition: 0.3s; }
-        .item-luxury-card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.1); }
-        .item-label { font-size: 22px; font-weight: bold; color: #fff; margin-bottom: 15px; display: block; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        
-        .options-box { display: flex; flex-wrap: wrap; gap: 10px; }
-        .opt-btn { flex: 1; min-width: 90px; background: #1a1a1a; border: 1px solid #333; border-radius: 15px; padding: 12px 5px; cursor: pointer; text-align: center; transition: 0.2s; }
-        .opt-btn:active { transform: scale(0.9); background: var(--gold); }
-        .opt-btn .type { font-size: 13px; color: #aaa; display: block; }
-        .opt-btn .val { font-size: 18px; color: var(--gold-light); font-weight: 900; }
-
-        /* Cart Modal Design */
-        .cart-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.96); z-index: 10000; padding: 20px; overflow-y: auto; }
-        .cart-content { max-width: 550px; margin: auto; background: #000; border: 2px solid var(--gold); border-radius: 30px; padding: 30px; box-shadow: 0 0 50px rgba(212, 175, 55, 0.2); }
-        .cart-header { color: var(--gold); text-align: center; font-size: 28px; margin-bottom: 30px; border-bottom: 1px solid var(--gold); padding-bottom: 15px; }
-        .line-item { display: flex; justify-content: space-between; align-items: center; background: #111; padding: 15px; border-radius: 15px; margin-bottom: 12px; border-right: 4px solid var(--red); }
-        .cart-total { font-size: 30px; text-align: center; margin: 30px 0; color: var(--gold); font-weight: 900; background: #111; padding: 15px; border-radius: 20px; }
-        
-        .field { width: 100%; padding: 18px; margin-bottom: 15px; border-radius: 15px; border: 1px solid #333; background: #0a0a0a; color: #fff; font-size: 16px; outline: none; transition: 0.3s; }
-        .field:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
-        .btn-order { background: linear-gradient(to left, #ff0000, #b30000); color: #fff; width: 100%; padding: 20px; border: none; border-radius: 20px; font-size: 22px; font-weight: 900; cursor: pointer; box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4); }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tosta | توستا - تجربة الشكل</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      background-color: #050505;
+      font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .glow-gold {
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.6), 0 0 30px rgba(212, 175, 55, 0.3);
+    }
+    .glow-red {
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+    }
+    .border-gold-glow {
+      border: 1.5px solid #d4af37;
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
+    }
+    .btn-red-neon {
+      background-color: #ff0000;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.5rem 1.2rem;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .btn-red-neon:hover {
+      background-color: #cc0000;
+      box-shadow: 0 0 35px rgba(255, 0, 0, 1);
+      transform: scale(1.05);
+    }
+    .btn-gold-outline {
+      background: transparent;
+      border: 2px solid #d4af37;
+      color: #d4af37;
+      font-weight: bold;
+      padding: 0.4rem 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .btn-gold-outline:hover {
+      background-color: #d4af37;
+      color: #050505;
+      box-shadow: 0 0 25px #d4af37;
+    }
+    .tab-active {
+      background-color: #ff0000;
+      color: white;
+      box-shadow: 0 0 25px #ff0000;
+      border-bottom: 3px solid #d4af37;
+      font-weight: bold;
+    }
+    .tab-inactive {
+      background-color: #1a1a1a;
+      color: #d4af37;
+      border: 1px solid #d4af37;
+    }
+    .floating-cart {
+      backdrop-filter: blur(12px);
+      background-color: rgba(10, 10, 10, 0.9);
+      border: 1.5px solid #d4af37;
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.7);
+    }
+    .popup-overlay {
+      background-color: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      background: #050505;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #d4af37;
+      border-radius: 10px;
+    }
+  </style>
 </head>
-<body>
+<body class="text-gray-100 min-h-screen">
 
-<div class="cart-trigger" onclick="toggleCart()">
-    <i class="fas fa-shopping-cart fa-2x"></i>
-    <span id="cart-badge">0</span>
-</div>
+  <!-- Sticky Navbar -->
+  <header class="sticky top-0 z-50 bg-black bg-opacity-90 backdrop-blur-md border-b border-gold-glow">
+    <div class="max-w-7xl mx-auto px-3 py-2 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <i class="fas fa-crown text-3xl text-[#d4af37] glow-gold rounded-full"></i>
+        <span class="text-2xl md:text-3xl font-extrabold text-[#d4af37] tracking-wider glow-gold">TOSTA</span>
+      </div>
+      <div class="flex items-center gap-2 md:gap-3">
+        <button id="cartToggleBtn" class="relative btn-gold-outline text-sm px-3 py-1.5">
+          <i class="fas fa-shopping-cart ml-1"></i> <span class="hidden sm:inline">السلة</span>
+          <span id="cartCountBadge" class="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold glow-red">0</span>
+        </button>
+      </div>
+    </div>
+    <nav class="max-w-7xl mx-auto px-2 pb-2 flex overflow-x-auto gap-1 md:gap-2 text-sm">
+      <button class="tab-active whitespace-nowrap px-4 py-2 rounded-full transition">كريب</button>
+      <button class="tab-inactive whitespace-nowrap px-4 py-2 rounded-full transition">بيتزا</button>
+      <button class="tab-inactive whitespace-nowrap px-4 py-2 rounded-full transition">فطير</button>
+      <button class="tab-inactive whitespace-nowrap px-4 py-2 rounded-full transition">وجبات</button>
+    </nav>
+  </header>
 
-<header class="header">
-    <div class="logo-wrap"><h1 style="margin:0; color:var(--gold); font-size:40px;">T</h1></div>
-    <div class="res-title">مطعم توستا</div>
-    <div class="sub-title">TOSTA - LUXURY FOOD</div>
-    <p style="color: #666; margin-top: 10px;">ش الصحة القديم - متفرع من الشعراوي</p>
-</header>
-
-<nav class="menu-nav">
-    <button class="nav-link active" onclick="jump('crepe-sec')">كريب</button>
-    <button class="nav-link" onclick="jump('pizza-sec')">بيتزا</button>
-    <button class="nav-link" onclick="jump('fater-sec')">فطير</button>
-    <button class="nav-link" onclick="jump('meals-sec')">وجبات</button>
-    <button class="nav-link" onclick="jump('burger-sec')">برجر</button>
-</nav>
-
-<div class="section-container">
+  <!-- Main Content Area -->
+  <main class="max-w-7xl mx-auto px-4 py-6 pb-36">
+    <h2 class="text-3xl font-bold text-[#d4af37] mb-6 text-center glow-gold">🍢 ركن الكريب (عادي / كونو)</h2>
     
-    <div id="crepe-sec">
-        <h2 class="cat-heading">🌯 ركن الكريب الحادق</h2>
-        <div class="items-grid">
-            <div class="item-luxury-card">
-                <span class="item-label">كريب بطاطس</span>
-                <div class="options-box">
-                    <button class="opt-btn" onclick="add('بطاطس عادي', 60)"><span class="type">عادي</span><span class="val">60ج</span></button>
-                    <button class="opt-btn" onclick="add('بطاطس كونو', 70)"><span class="type">كونو</span><span class="val">70ج</span></button>
-                </div>
-            </div>
-            <div class="item-luxury-card">
-                <span class="item-label">كريب ميكس جبن</span>
-                <div class="options-box">
-                    <button class="opt-btn" onclick="add('ميكس جبن عادي', 75)"><span class="type">عادي</span><span class="val">75ج</span></button>
-                    <button class="opt-btn" onclick="add('ميكس جبن كونو', 85)"><span class="type">كونو</span><span class="val">85ج</span></button>
-                </div>
-            </div>
-            <div class="item-luxury-card">
-                <span class="item-label">كريب بانية / كريسبي</span>
-                <div class="options-box">
-                    <button class="opt-btn" onclick="add('بانية عادي', 85)"><span class="type">عادي</span><span class="val">85ج</span></button>
-                    <button class="opt-btn" onclick="add('بانية كونو', 95)"><span class="type">كونو</span><span class="val">95ج</span></button>
-                </div>
-            </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      
+      <!-- Card Product -->
+      <div class="bg-[#111] border-gold-glow rounded-2xl p-4 hover:scale-[1.02] transition-transform duration-300">
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="text-xl font-bold text-[#d4af37]">بطاطس</h3>
+          <span class="text-sm bg-[#1a1a1a] text-gray-400 px-2 py-1 rounded">عادي / كونو</span>
         </div>
-    </div>
-
-    <div id="pizza-sec">
-        <h2 class="cat-heading">🍕 ركن البيتزا الملكي</h2>
-        <div class="items-grid">
-            <div class="item-luxury-card">
-                <span class="item-label">بيتزا سوبر ستار</span>
-                <div class="options-box">
-                    <button class="opt-btn" onclick="add('ستار S', 100)"><span class="type">S</span><span class="val">100ج</span></button>
-                    <button class="opt-btn" onclick="add('ستار M', 120)"><span class="type">M</span><span class="val">120ج</span></button>
-                    <button class="opt-btn" onclick="add('ستار L', 150)"><span class="type">L</span><span class="val">150ج</span></button>
-                    <button class="opt-btn" onclick="add('ستار XL', 160)"><span class="type">XL</span><span class="val">160ج</span></button>
-                </div>
-            </div>
-            <div class="item-luxury-card">
-                <span class="item-label">بيتزا سي فود</span>
-                <div class="options-box">
-                    <button class="opt-btn" onclick="add('سي فود S', 100)"><span class="type">S</span><span class="val">100ج</span></button>
-                    <button class="opt-btn" onclick="add('سي فود M', 130)"><span class="type">M</span><span class="val">130ج</span></button>
-                    <button class="opt-btn" onclick="add('سي فود L', 150)"><span class="type">L</span><span class="val">150ج</span></button>
-                </div>
-            </div>
+        <div class="flex justify-between items-center mb-3">
+          <span class="text-2xl font-extrabold text-white">60 <small class="text-sm text-gray-400">ج</small></span>
+          <span class="text-lg text-gray-400">/</span>
+          <span class="text-2xl font-extrabold text-white">70 <small class="text-sm text-gray-400">ج</small></span>
         </div>
+        <button onclick="addToCart('بطاطس', 60, 'عادي')" class="btn-red-neon w-full text-center py-2">
+          <i class="fas fa-plus ml-1"></i> أضف للسلة
+        </button>
+      </div>
+      
     </div>
+  </main>
 
-    <div id="meals-sec">
-        <h2 class="cat-heading">🍗 ركن الوجبات والفتات</h2>
-        <div class="items-grid">
-            <div class="item-luxury-card">
-                <span class="item-label">وجبة توستا (العملاقة)</span>
-                <p style="font-size:12px; color:#666">بروستد+بانيه+شيش+ستريبس+كوردن بلو</p>
-                <div class="options-box">
-                    <button class="opt-btn" style="width:100%" onclick="add('وجبة توستا', 250)"><span class="type">كاملة</span><span class="val">250ج</span></button>
-                </div>
+  <!-- Floating Cart -->
+  <div id="floatingCart" class="fixed bottom-6 left-4 right-4 md:left-auto md:right-6 md:w-96 floating-cart rounded-2xl p-4 z-40 hidden">
+    <div class="flex justify-between items-center mb-3">
+      <h3 class="text-xl font-bold text-[#d4af37]">🛒 سلة المشتريات</h3>
+      <button id="closeCartBtn" class="text-gray-400 hover:text-red-500 text-xl"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="cartItemsList" class="max-h-52 overflow-y-auto space-y-2 text-sm mb-3">
+      <p class="text-gray-500 text-center">السلة فارغة</p>
+    </div>
+    <div class="flex justify-between text-lg font-bold text-white border-t border-[#d4af37] pt-2">
+      <span>الإجمالي:</span>
+      <span id="cartTotalPrice">0 ج</span>
+    </div>
+    <button id="checkoutBtn" class="btn-red-neon w-full mt-3 text-center py-2.5" disabled>تأكيد الطلب</button>
+  </div>
+
+  <!-- Checkout Popup -->
+  <div id="checkoutPopup" class="fixed inset-0 z-50 flex items-center justify-center popup-overlay hidden">
+    <div class="bg-[#111] border border-gold-glow rounded-2xl p-6 w-11/12 max-w-md glow-gold">
+      <h2 class="text-2xl font-bold text-[#d4af37] mb-4 text-center">إتمام الطلب</h2>
+      <div class="space-y-3">
+        <input type="text" id="custName" placeholder="الاسم الكريم" class="w-full bg-[#1a1a1a] border border-gray-600 rounded p-3 text-white focus:border-[#d4af37] outline-none">
+        <input type="tel" id="custPhone" placeholder="رقم الموبايل" class="w-full bg-[#1a1a1a] border border-gray-600 rounded p-3 text-white focus:border-[#d4af37] outline-none">
+        <textarea id="custAddress" rows="2" placeholder="العنوان بالتفصيل" class="w-full bg-[#1a1a1a] border border-gray-600 rounded p-3 text-white focus:border-[#d4af37] outline-none"></textarea>
+      </div>
+      <div class="flex gap-3 mt-5">
+        <button id="closePopupBtn" class="flex-1 btn-gold-outline py-2">إلغاء</button>
+        <button id="sendWhatsAppBtn" class="flex-1 btn-red-neon py-2">إرسال للواتساب</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Cart functionality
+    let cart = [];
+    
+    function updateCartUI() {
+      const cartList = document.getElementById('cartItemsList');
+      const totalSpan = document.getElementById('cartTotalPrice');
+      const countBadge = document.getElementById('cartCountBadge');
+      const checkoutBtn = document.getElementById('checkoutBtn');
+      
+      if (cart.length === 0) {
+        cartList.innerHTML = '<p class="text-gray-500 text-center">السلة فارغة</p>';
+        totalSpan.textContent = '0 ج';
+        countBadge.textContent = '0';
+        checkoutBtn.disabled = true;
+        checkoutBtn.classList.add('opacity-50');
+        return;
+      }
+      
+      let total = 0;
+      cartList.innerHTML = cart.map((item, index) => {
+        total += item.price;
+        return `
+          <div class="flex justify-between items-center bg-[#1a1a1a] p-2 rounded text-white">
+            <span>${item.name} <small class="text-gray-400">(${item.type})</small></span>
+            <div class="flex items-center gap-2">
+              <span class="text-[#d4af37] font-bold">${item.price} ج</span>
+              <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
             </div>
-            <div class="item-luxury-card">
-                <span class="item-label">فتة شاورما فراخ</span>
-                <div class="options-box">
-                    <button class="opt-btn" onclick="add('فتة شاورما عادي', 110)"><span class="type">عادي</span><span class="val">110ج</span></button>
-                    <button class="opt-btn" onclick="add('فتة شاورما XL', 120)"><span class="type">XL</span><span class="val">120ج</span></button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<div id="cartModal" class="cart-modal">
-    <div class="cart-content">
-        <h2 class="cart-header">🛒 طلباتك من توستا</h2>
-        <div id="cart-list"></div>
-        <div class="cart-total">الحساب: <span id="final-price">0</span> ج</div>
-        
-        <div class="form-order">
-            <input type="text" id="name" class="field" placeholder="الاسم بالكامل">
-            <input type="tel" id="tel" class="field" placeholder="رقم الموبايل">
-            <textarea id="addr" class="field" rows="3" placeholder="العنوان بالتفصيل (عشان الدليفري يوصل طيارة)"></textarea>
-            <button class="btn-order" onclick="submitOrder()">تأكيد الطلب عبر واتساب 🚀</button>
-            <button onclick="toggleCart()" style="width:100%; background:none; border:none; color:#666; margin-top:15px; cursor:pointer">إكمال التسوق</button>
-        </div>
-    </div>
-</div>
-
-<script>
-    let basket = [];
-    let grandTotal = 0;
-
-    function add(item, price) {
-        basket.push({item, price});
-        sync();
-        const btn = event.currentTarget;
-        btn.style.background = '#d4af37';
-        btn.style.color = '#000';
-        setTimeout(() => { btn.style.background = '#1a1a1a'; btn.style.color = '#fff'; }, 300);
+          </div>
+        `;
+      }).join('');
+      
+      totalSpan.textContent = total + ' ج';
+      countBadge.textContent = cart.length;
+      checkoutBtn.disabled = false;
+      checkoutBtn.classList.remove('opacity-50');
     }
-
-    function sync() {
-        document.getElementById('cart-badge').innerText = basket.length;
-        let list = document.getElementById('cart-list');
-        list.innerHTML = '';
-        grandTotal = 0;
-        basket.forEach((obj, i) => {
-            grandTotal += obj.price;
-            list.innerHTML += `
-                <div class="line-item">
-                    <span style="font-weight:bold">${obj.item}</span>
-                    <span>${obj.price}ج <i class="fas fa-trash-alt" onclick="del(${i})" style="color:var(--red); margin-right:15px; cursor:pointer"></i></span>
-                </div>`;
-        });
-        document.getElementById('final-price').innerText = grandTotal;
+    
+    function addToCart(name, price, type = 'عادي') {
+      cart.push({ name, price, type });
+      updateCartUI();
+      document.getElementById('floatingCart').classList.remove('hidden');
     }
-
-    function del(i) { basket.splice(i, 1); sync(); }
-    function toggleCart() { let m = document.getElementById('cartModal'); m.style.display = (m.style.display == 'block') ? 'none' : 'block'; }
-
-    function submitOrder() {
-        let n = document.getElementById('name').value;
-        let t = document.getElementById('tel').value;
-        let a = document.getElementById('addr').value;
-        
-        if(!n || !a || basket.length == 0) { alert('يا هندسة كمل بياناتك وضيف أكل للسلة!'); return; }
-
-        let text = `🔥 *طلب جديد من توستا* 🔥%0A%0A`;
-        text += `👤 *العميل:* ${n}%0A📱 *موبايل:* ${t}%0A📍 *العنوان:* ${a}%0A%0A`;
-        text += `📝 *الأصناف:*%0A`;
-        basket.forEach(o => text += `- ${o.item} (${o.price}ج)%0A`);
-        text += `%0A💰 *الإجمالي:* ${grandTotal} جنيه`;
-
-        window.open(`https://wa.me/201030353060?text=${text}`);
+    
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
     }
-
-    function jump(id) {
-        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-        event.target.classList.add('active');
-        document.getElementById(id).scrollIntoView({behavior: 'smooth'});
-    }
-</script>
-
+    
+    // Cart toggle
+    document.getElementById('cartToggleBtn').addEventListener('click', () => {
+      document.getElementById('floatingCart').classList.toggle('hidden');
+    });
+    
+    document.getElementById('closeCartBtn').addEventListener('click', () => {
+      document.getElementById('floatingCart').classList.add('hidden');
+    });
+    
+    // Checkout popup
+    document.getElementById('checkoutBtn').addEventListener('click', () => {
+      document.getElementById('checkoutPopup').classList.remove('hidden');
+    });
+    
+    document.getElementById('closePopupBtn').addEventListener('click', () => {
+      document.getElementById('checkoutPopup').classList.add('hidden');
+    });
+    
+    // WhatsApp send
+    document.getElementById('sendWhatsAppBtn').addEventListener('click', () => {
+      const name = document.getElementById('custName').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const address = document.getElementById('custAddress').value.trim();
+      
+      if (!name || !phone || !address) {
+        alert('من فضلك أكمل جميع البيانات');
+        return;
+      }
+      
+      let orderDetails = cart.map((item, i) => `${i+1}. ${item.name} (${item.type}) - ${item.price} ج`).join('%0A');
+      let total = cart.reduce((sum, item) => sum + item.price, 0);
+      
+      let message = `🚀 *طلب جديد من TOSTA*%0A%0A` +
+                    `👤 *الاسم:* ${name}%0A` +
+                    `📞 *الموبايل:* ${phone}%0A` +
+                    `📍 *العنوان:* ${address}%0A%0A` +
+                    `📋 *تفاصيل الطلب:*%0A${orderDetails}%0A%0A` +
+                    `💰 *الإجمالي النهائي:* ${total} ج`;
+      
+      window.open(`https://wa.me/201030353060?text=${message}`, '_blank');
+    });
+  </script>
 </body>
-    </html>
+</html>
