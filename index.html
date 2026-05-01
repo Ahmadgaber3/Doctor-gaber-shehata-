@@ -3,132 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دكتور جابر شحاتة | مختبر تحاليل طبية</title>
+    <title>مطعم توستا - Tosta | أصل الطعم</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --dark: #0a0a0a; --card-bg: #161616; --primary: #2ecc71; --text: #e0e0e0; --gold: #f1c40f; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--dark); margin: 0; padding-bottom: 160px; color: var(--text); line-height: 1.6; }
+        :root { --tosta-orange: #ff4500; --tosta-yellow: #ffcc00; --dark-bg: #0d0d0d; --card-bg: #1a1a1a; --text: #ffffff; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--dark-bg); color: var(--text); margin: 0; padding-bottom: 100px; overflow-x: hidden; }
         
-        /* القائمة الجانبية الأصلية - إصلاح شامل للتهنيج */
-        .sidebar { height: 100%; width: 0; position: fixed; z-index: 2001; top: 0; right: 0; background-color: #111; overflow-x: hidden; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); border-left: 2px solid var(--primary); }
-        .sidebar a { padding: 18px 25px; text-decoration: none; font-size: 17px; color: #bbb; display: block; text-align: right; border-bottom: 1px solid #222; cursor: pointer; }
-        .sidebar a:hover { background: #1a1a1a; color: var(--primary); }
-        .menu-icon { font-size: 24px; cursor: pointer; color: var(--primary); position: absolute; top: 20px; right: 20px; z-index: 1000; background: var(--card-bg); padding: 10px; border-radius: 12px; border: 1px solid #333; }
+        /* Sidebar */
+        .sidebar { height: 100%; width: 0; position: fixed; z-index: 2001; top: 0; right: 0; background-color: #111; overflow-x: hidden; transition: 0.3s; border-left: 3px solid var(--tosta-orange); }
+        .sidebar a { padding: 15px 25px; text-decoration: none; font-size: 18px; color: #ccc; display: block; text-align: right; border-bottom: 1px solid #222; cursor: pointer; }
+        .sidebar a i { margin-left: 10px; color: var(--tosta-orange); }
+        .menu-icon { font-size: 24px; cursor: pointer; color: var(--tosta-orange); position: absolute; top: 20px; right: 20px; z-index: 1000; background: var(--card-bg); padding: 10px; border-radius: 12px; border: 1px solid #333; }
 
-        .container { max-width: 500px; margin: auto; padding: 0 15px; }
-        .header { padding: 60px 20px 30px; text-align: center; border-bottom: 2px solid var(--primary); background: linear-gradient(180deg, #1e1e1e, #0a0a0a); }
-        .doc-img { width: 110px; height: 110px; border-radius: 50%; border: 3px solid var(--primary); padding: 4px; }
+        /* Header */
+        .header { background: linear-gradient(180deg, #2c0b00, var(--dark-bg)); padding: 50px 20px 30px; text-align: center; border-bottom: 3px solid var(--tosta-orange); }
+        .logo-text { font-size: 45px; font-weight: bold; color: var(--tosta-orange); text-shadow: 2px 2px 10px rgba(255,69,0,0.5); margin: 0; }
+        .sub-text { color: var(--tosta-yellow); font-size: 18px; margin-top: 5px; }
 
-        /* صندوق الشكاوى والزيارات المنزلية */
-        .action-card { background: var(--card-bg); border-radius: 20px; padding: 20px; margin: 20px 0; border: 1px solid var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
-        .home-visit-btn { background: #e74c3c; color: #fff; width: 100%; padding: 12px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .input-group input, .input-group textarea { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #333; background: #000; color: #fff; box-sizing: border-box; margin-bottom: 10px; text-align: right; font-family: inherit; }
-        .send-btn { width: 100%; background: var(--primary); color: #000; padding: 12px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        .container { max-width: 600px; margin: auto; padding: 15px; }
 
-        /* باقات الفحص الشامل */
-        .package-box { background: linear-gradient(45deg, #1a1a1a, #2c3e50); border: 1px solid var(--gold); border-radius: 15px; padding: 15px; margin-bottom: 20px; }
-        .package-title { color: var(--gold); font-weight: bold; display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        /* Order Box */
+        .order-panel { background: var(--card-bg); border-radius: 20px; padding: 20px; margin: 20px 0; border: 1px solid #333; position: relative; }
+        .order-panel::before { content: '24H'; position: absolute; top: -10px; left: 20px; background: #ff0000; color: #fff; padding: 5px 10px; border-radius: 10px; font-weight: bold; font-size: 12px; }
+        .input-group input, .input-group textarea { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #444; background: #000; color: #fff; margin-bottom: 10px; text-align: right; }
+        .btn-order { width: 100%; background: var(--tosta-orange); color: #fff; padding: 15px; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
 
-        /* التحاليل الـ 40 الأصلية */
-        .cat-title { color: var(--primary); border-right: 4px solid var(--primary); padding-right: 12px; margin: 30px 0 15px; font-weight: bold; font-size: 18px; }
-        .test-card { background: var(--card-bg); border-radius: 15px; padding: 15px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #222; }
-        .test-card h4 { margin: 0; font-size: 14px; }
-        .order-btn { background: var(--primary); color: #000; padding: 7px 15px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 12px; }
+        /* Menu Sections */
+        .section-title { background: var(--tosta-orange); color: #fff; padding: 10px 20px; border-radius: 10px 0 10px 0; margin: 30px 0 15px; display: inline-block; font-weight: bold; }
+        .item-card { background: var(--card-bg); border-radius: 15px; padding: 15px; margin-bottom: 15px; border-right: 5px solid var(--tosta-orange); transition: 0.3s; }
+        .item-card:hover { transform: scale(1.02); background: #222; }
+        .item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .item-name { font-size: 17px; font-weight: bold; color: var(--tosta-yellow); }
+        .item-price { background: #333; color: var(--tosta-orange); padding: 5px 12px; border-radius: 8px; font-weight: bold; }
+        .item-desc { font-size: 13px; color: #bbb; margin: 0; }
 
-        /* شريط التواصل السفلي */
-        .footer-nav { position: fixed; bottom: 15px; left: 8px; right: 8px; display: flex; gap: 5px; z-index: 1500; }
-        .footer-nav a { flex: 1; background: var(--primary); color: #000; text-align: center; padding: 10px 2px; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 10px; display: flex; flex-direction: column; align-items: center; gap: 4px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
-        .footer-nav a.fb { background: #1877f2; color: #fff; }
-        .footer-nav a.yt { background: #ff0000; color: #fff; }
-
-        .copyright { text-align: center; padding: 30px; color: #555; font-size: 12px; border-top: 1px solid #222; margin-top: 40px; }
+        /* Footer Nav */
+        .footer-nav { position: fixed; bottom: 10px; left: 10px; right: 10px; display: flex; gap: 5px; z-index: 1500; }
+        .footer-nav a { flex: 1; background: var(--tosta-orange); color: #fff; text-align: center; padding: 10px 5px; border-radius: 15px; text-decoration: none; font-weight: bold; font-size: 11px; display: flex; flex-direction: column; align-items: center; gap: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .footer-nav a.call { background: #2ecc71; }
+        
+        .copyright { text-align: center; padding: 20px; color: #555; font-size: 12px; }
     </style>
 </head>
 <body>
 
 <div id="mySidebar" class="sidebar">
-  <a href="javascript:void(0)" onclick="closeNav()" style="font-size: 35px; color: var(--primary);">×</a>
-  <a onclick="closeNav()"><i class="fas fa-microscope"></i> عن المعمل</a>
-  <a onclick="closeNav()"><i class="fas fa-user-md"></i> خبرة الدكتور</a>
-  <a onclick="closeNav()"><i class="fas fa-list-ul"></i> التحاليل الموجودة</a>
-  <a onclick="closeNav()"><i class="fas fa-lightbulb"></i> أهم النصائح</a>
+  <a href="javascript:void(0)" onclick="closeNav()" style="font-size: 35px; color: var(--tosta-orange);">×</a>
+  <a onclick="scrollToSection('meals')"><i class="fas fa-drumstick-bite"></i> ركن الوجبات</a>
+  <a onclick="scrollToSection('crepe')"><i class="fas fa-utensils"></i> ركن الكريب</a>
+  <a onclick="scrollToSection('pizza')"><i class="fas fa-pizza-slice"></i> ركن البيتزا</a>
+  <a onclick="scrollToSection('sweet')"><i class="fas fa-ice-cream"></i> الفطير الحلو</a>
 </div>
 
 <span class="menu-icon" onclick="openNav()"><i class="fas fa-bars"></i></span>
 
 <div class="header">
-    <img src="doctor.jpg" class="doc-img" alt="دكتور جابر شحاتة">
-    <h1 style="color: var(--primary);">دكتور جابر شحاتة</h1>
-    <p style="color: #888; font-size: 14px;">أبو المطامير - مساكن الإرشاد</p>
+    <h1 class="logo-text">TOSTA</h1>
+    <div class="sub-text">أقوى منيو مشويات ووجبات في مصر</div>
+    <p style="font-size: 13px; color: #888;">ش الصحة القديم - متفرع من ش الشعراوي</p>
 </div>
 
 <div class="container">
     
-    <div class="package-box" style="border-color: var(--primary);">
-        <div class="package-title" style="color: var(--primary);"><i class="fas fa-moon"></i> عروض رمضان الكريم</div>
-        <p style="font-size: 13px; margin: 0;">خصم 20% على كافة التحاليل طوال الشهر المبارك.</p>
-    </div>
-
-    <div class="action-card">
-        <button class="home-visit-btn" onclick="window.open('https://wa.me/201015090991?text=أريد طلب خدمة سحب عينة من المنزل')">
-            <i class="fas fa-motorcycle"></i> اطلب سحب عينة من منزلك الآن
+    <div class="order-panel">
+        <h3 style="text-align: center; color: var(--tosta-orange); margin-top: 0;">🚀 اطلب دليفري دلوقتي</h3>
+        <div class="input-group"><input type="text" id="custName" placeholder="اسمك الكريم"></div>
+        <div class="input-group"><textarea id="custOrder" rows="3" placeholder="اكتب طلبك هنا بالتفصيل..."></textarea></div>
+        <button class="btn-order" onclick="sendTostaOrder()">
+            <i class="fab fa-whatsapp"></i> إرسال الطلب عبر واتساب
         </button>
-        <h4 style="text-align: center; margin: 0 0 10px; color: var(--primary);">📩 أرسل شكواك أو استفسارك</h4>
-        <div class="input-group"><input type="text" id="pName" placeholder="اسم حضرتك بالكامل"></div>
-        <div class="input-group"><textarea id="pMsg" rows="3" placeholder="اكتب رسالتك للدكتور هنا..."></textarea></div>
-        <button class="send-btn" onclick="sendMsg()">إرسال للدكتور (واتساب)</button>
     </div>
 
-    <div class="package-box">
-        <div class="package-title"><i class="fas fa-heartbeat"></i> باقة الاطمئنان الشامل</div>
-        <p style="font-size: 12px; color: #bbb;">(صورة دم + سكر + وظائف كبد + وظائف كلى + نقرس)</p>
-        <a href="https://wa.me/201015090991?text=حجز باقة الاطمئنان الشامل" class="order-btn" style="background: var(--gold); display: inline-block; margin-top: 5px;">احجز الباقة</a>
+    <div id="meals">
+        <div class="section-title">🍗 ركن الوجبات (تندوري وشيش)</div>
+        <div class="item-card">
+            <div class="item-header"><span class="item-name">وجبة فراخ تندوري (ربع)</span><span class="item-price">120 ج</span></div>
+            <p class="item-desc">مع الأرز والخلطة السرية والسلطة والطحينة والعيش</p>
+        </div>
+        <div class="item-card">
+            <div class="item-header"><span class="item-name">وجبة توستا (ميكس)</span><span class="item-price">350 ج</span></div>
+            <p class="item-desc">بروست + فراخ كابي + بانية + شيش + كفتة + أرز + بطاطس</p>
+        </div>
+        <div class="item-card">
+            <div class="item-header"><span class="item-name">وجبة كوردن بلو (3 قطع)</span><span class="item-price">180 ج</span></div>
+            <p class="item-desc">محشية بسطرمة وجبنة مع الأرز والبطاطس</p>
+        </div>
     </div>
 
-    <div id="tests">
-        <div class="cat-title">🩸 تحاليل الدم والمناعة</div>
-        <div class="test-card"><h4>صورة دم كاملة (CBC)</h4><a href="https://wa.me/201015090991?text=CBC" class="order-btn">اطلب</a></div>
-        <div class="test-card"><h4>سرعة الترسيب (ESR)</h4><a href="https://wa.me/201015090991?text=ESR" class="order-btn">اطلب</a></div>
-        <div class="test-card"><h4>فصيلة الدم (RH)</h4><a href="https://wa.me/201015090991?text=RH" class="order-btn">اطلب</a></div>
-        
-        <div class="cat-title">🧪 وظائف الكبد والكلى</div>
-        <div class="test-card"><h4>إنزيمات كبد (ALT)</h4><a href="https://wa.me/201015090991?text=ALT" class="order-btn">اطلب</a></div>
-        <div class="test-card"><h4>كرياتينين (كلى)</h4><a href="https://wa.me/201015090991?text=Creatinine" class="order-btn">اطلب</a></div>
-        <div class="test-card"><h4>بولينا (Urea)</h4><a href="https://wa.me/201015090991?text=Urea" class="order-btn">اطلب</a></div>
-        <div class="test-card"><h4>حمض البوليك (النقرس)</h4><a href="https://wa.me/201015090991?text=Gout" class="order-btn">اطلب</a></div>
+    <div id="crepe">
+        <div class="section-title">🌯 ركن الكريب الحادق</div>
+        <div class="item-card">
+            <div class="item-header"><span class="item-name">كريب بطاطس</span><span class="item-price">60 ج / 70 ج كونو</span></div>
+            <p class="item-desc">متوفر عادي وكونو حسب اختيارك</p>
+        </div>
+        <div class="item-card">
+            <div class="item-header"><span class="item-name">كريب ميكس لحوم</span><span class="item-price">95 ج / 115 ج كونو</span></div>
+            <p class="item-desc">أقوى ميكس لحوم بتتبيلة توستا</p>
+        </div>
+    </div>
 
-        <div class="cat-title">🍬 السكر والدهون</div>
-        <div class="test-card"><h4>سكر تراكمي (HbA1c)</h4><a href="https://wa.me/201015090991?text=HbA1c" class="order-btn">اطلب</a></div>
-        <div class="test-card"><h4>كوليسترول كامل</h4><a href="https://wa.me/201015090991?text=Cholesterol" class="order-btn">اطلب</a></div>
-        
-        <div class="cat-title">🔬 تحاليل متنوعة</div>
-        <div class="test-card"><h4>بول كامل</h4><a href="https://wa.me/201015090991?text=Urine" class="order-btn">اطلب</a></div>
-        <div class="test-card"><h4>براز كامل</h4><a href="https://wa.me/201015090991?text=Stool" class="order-btn">اطلب</a></div>
-        <div class="test-card"><h4>جرثومة معدة</h4><a href="https://wa.me/201015090991?text=Pylori" class="order-btn">اطلب</a></div>
+    <div id="pizza">
+        <div class="section-title">🍕 ركن البيتزا (إيطالي أصلي)</div>
+        <div class="item-card">
+            <div class="item-header"><span class="item-name">بيتزا مارجريتا</span><span class="item-price">S: 70 | M: 80 | XL: 90</span></div>
+            <p class="item-desc">بأجود أنواع الجبن الموتزاريلا</p>
+        </div>
+        <div class="item-card">
+            <div class="item-header"><span class="item-name">بيتزا سوبر ستار</span><span class="item-price">S: 100 | M: 125 | XL: 160</span></div>
+            <p class="item-desc">لحوم + سلامي + بسطرمة + خضروات</p>
+        </div>
+    </div>
+
+    <div id="sweet">
+        <div class="section-title">🥐 الفطير الحلو (التحلية)</div>
+        <div class="item-card">
+            <div class="item-header"><span class="item-name">فطيرة نوتيلا</span><span class="item-price">80 ج</span></div>
+        </div>
+        <div class="item-card">
+            <div class="item-header"><span class="item-name">مكس شوكولاتة وقشطة وعسل</span><span class="item-price">90 ج</span></div>
+            <p class="item-desc">قنبلة التحلية من توستا</p>
+        </div>
     </div>
 
     <div class="copyright">
-        Designed by <b>Eng Ahmad Gaber 2026</b> ©
+        Designed by <b>Eng Ahmad Gaber 2026</b> ©<br>
+        جميع الحقوق محفوظة لمطعم توستا - Tosta
     </div>
 </div>
 
 <div class="footer-nav">
-    <a href="https://wa.me/201015090991"><i class="fab fa-whatsapp"></i>واتساب</a>
-    <a href="tel:01015090991"><i class="fas fa-phone-alt"></i>اتصل بنا</a>
-    <a href="https://www.facebook.com/share/1Ajnuq8VBe/" target="_blank" class="fb"><i class="fab fa-facebook-f"></i>فيسبوك</a>
-    <a href="https://youtube.com/@drgaber2023?si=RRa9kT9aUIvf3amP" target="_blank" class="yt"><i class="fab fa-youtube"></i>يوتيوب</a>
+    <a href="https://wa.me/201030353060"><i class="fab fa-whatsapp"></i>واتساب 1</a>
+    <a href="tel:01286712929" class="call"><i class="fas fa-phone-alt"></i>دليفري 1</a>
+    <a href="tel:01030353060" class="call"><i class="fas fa-phone-alt"></i>دليفري 2</a>
+    <a href="https://www.facebook.com/tosta.restaurant"><i class="fab fa-facebook-f"></i>فيسبوك</a>
     <a href="#"><i class="fas fa-map-marker-alt"></i>موقعنا</a>
 </div>
 
 <script>
 function openNav() { document.getElementById("mySidebar").style.width = "260px"; }
 function closeNav() { document.getElementById("mySidebar").style.width = "0"; }
-function sendMsg() {
-    let n = document.getElementById('pName').value;
-    let m = document.getElementById('pMsg').value;
-    if(!n || !m) { alert("اكتب اسمك ورسالتك أولاً"); return; }
-    window.open(`https://wa.me/201015090991?text=الاسم: ${n}%0Aالشكوى: ${m}`, '_blank');
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    closeNav();
+}
+function sendTostaOrder() {
+    let name = document.getElementById('custName').value;
+    let order = document.getElementById('custOrder').value;
+    if(!name || !order) { alert("من فضلك اكتب اسمك وطلبك"); return; }
+    window.open(`https://wa.me/201030353060?text=طلب جديد من الموقع:%0Aالاسم: ${name}%0Aالطلب: ${order}`, '_blank');
 }
 </script>
 </body>
-                    </html>
+</html>
