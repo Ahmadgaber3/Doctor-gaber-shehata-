@@ -3,156 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOSTA | مطعم توستا - الفخامة</title>
+    <title>TOSTA GOLDEN SYSTEM | مطعم توستا</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #d4af37; --red-neon: #ff0000; --dark: #050505; --card: #121212; }
-        body { font-family: 'Cairo', sans-serif; background-color: var(--dark); color: #fff; margin: 0; }
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+        :root { --gold: #d4af37; --gold-light: #f1d592; --red: #ff0000; --dark-bg: #050505; --card-bg: #111111; }
+        body { font-family: 'Cairo', sans-serif; background-color: var(--dark-bg); color: #fff; margin: 0; padding-bottom: 100px; overflow-x: hidden; }
         
-        /* انيميشن الانفجار اللوني */
-        .header { padding: 40px 20px; text-align: center; border-bottom: 3px solid var(--gold); background: radial-gradient(circle, #3d0000 0%, var(--dark) 100%); }
-        .logo-box { border: 4px solid var(--gold); display: inline-block; padding: 10px; border-radius: 20px; box-shadow: 0 0 20px var(--red-neon); }
-        .res-name { font-size: 35px; color: var(--gold); text-shadow: 2px 2px 5px #000; margin: 15px 0 5px; }
+        /* Header & Luxury Logo */
+        .header { padding: 50px 20px; text-align: center; background: radial-gradient(circle, #2a0000 0%, #050505 100%); border-bottom: 4px solid var(--gold); position: relative; }
+        .logo-wrap { display: inline-block; padding: 15px; border: 3px double var(--gold); border-radius: 50% 20% 50% 20%; box-shadow: 0 0 30px rgba(255, 0, 0, 0.4); background: #000; transition: 0.5s; }
+        .logo-wrap:hover { transform: rotate(5deg) scale(1.1); box-shadow: 0 0 50px var(--red); }
+        .res-title { font-size: 45px; font-weight: 900; color: var(--gold); margin: 20px 0 5px; text-shadow: 0 0 10px var(--gold); }
+        .sub-title { color: var(--red); font-weight: bold; letter-spacing: 3px; font-size: 18px; }
 
-        /* سلة المشتريات الذهبية */
-        .cart-icon { position: fixed; bottom: 30px; left: 30px; background: linear-gradient(45deg, var(--gold), #ffcc00); color: #000; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; box-shadow: 0 0 20px var(--gold); cursor: pointer; border: 2px solid #fff; }
-        #cart-count { position: absolute; top: 0; right: 0; background: var(--red-neon); color: white; padding: 3px 8px; border-radius: 50%; font-size: 14px; }
+        /* Floating Luxury Cart */
+        .cart-trigger { position: fixed; bottom: 30px; left: 30px; background: linear-gradient(45deg, var(--gold), #ffdf00); color: #000; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 9999; box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px var(--gold); cursor: pointer; border: 3px solid #fff; }
+        #cart-badge { position: absolute; top: -5px; right: -5px; background: var(--red); color: #fff; font-size: 14px; padding: 4px 10px; border-radius: 50%; font-weight: bold; box-shadow: 0 0 10px var(--red); }
 
-        /* التبويبات */
-        .tabs-container { display: flex; overflow-x: auto; background: #000; padding: 10px; sticky: top; top: 0; z-index: 1000; border-bottom: 1px solid var(--gold); }
-        .tab { background: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 8px 20px; margin: 0 5px; border-radius: 30px; white-space: nowrap; cursor: pointer; transition: 0.3s; }
-        .tab.active { background: var(--red-neon); color: #fff; border-color: var(--red-neon); box-shadow: 0 0 10px var(--red-neon); }
+        /* Smooth Category Tabs */
+        .menu-nav { display: flex; overflow-x: auto; background: #0a0a0a; padding: 15px; sticky: top; top: 0; z-index: 2000; border-bottom: 2px solid #222; scrollbar-width: none; }
+        .nav-link { background: transparent; color: #888; border: 1.5px solid #333; padding: 10px 25px; border-radius: 50px; margin-left: 10px; cursor: pointer; white-space: nowrap; font-weight: bold; transition: 0.4s; }
+        .nav-link.active { background: var(--red); color: #fff; border-color: var(--red); box-shadow: 0 0 15px var(--red); }
 
-        /* كروت الطعام الفخمة */
-        .container { padding: 20px; }
-        .category-header { color: var(--gold); border-right: 5px solid var(--red-neon); padding-right: 15px; margin: 30px 0 20px; }
-        .food-card { background: var(--card); border-radius: 20px; padding: 20px; margin-bottom: 20px; border: 1px solid #222; position: relative; overflow: hidden; }
-        .food-card::before { content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--gold); }
-        .food-name { font-size: 20px; color: var(--gold); margin-bottom: 15px; display: block; }
+        /* Grid System for Items */
+        .section-container { padding: 20px; max-width: 1200px; margin: auto; }
+        .cat-heading { font-size: 28px; color: var(--gold); border-right: 6px solid var(--red); padding-right: 15px; margin: 40px 0 25px; text-shadow: 0 0 5px #000; }
         
-        .price-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 10px; }
-        .btn-add { background: #1a1a1a; border: 1px solid #333; color: #fff; padding: 10px; border-radius: 12px; cursor: pointer; text-align: center; transition: 0.3s; }
-        .btn-add:hover { border-color: var(--gold); background: #222; }
-        .btn-add span { display: block; color: var(--red-neon); font-weight: bold; font-size: 16px; margin-top: 5px; }
+        .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .item-luxury-card { background: var(--card-bg); border-radius: 25px; padding: 20px; border: 1px solid #222; position: relative; transition: 0.3s; }
+        .item-luxury-card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.1); }
+        .item-label { font-size: 22px; font-weight: bold; color: #fff; margin-bottom: 15px; display: block; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        
+        .options-box { display: flex; flex-wrap: wrap; gap: 10px; }
+        .opt-btn { flex: 1; min-width: 90px; background: #1a1a1a; border: 1px solid #333; border-radius: 15px; padding: 12px 5px; cursor: pointer; text-align: center; transition: 0.2s; }
+        .opt-btn:active { transform: scale(0.9); background: var(--gold); }
+        .opt-btn .type { font-size: 13px; color: #aaa; display: block; }
+        .opt-btn .val { font-size: 18px; color: var(--gold-light); font-weight: 900; }
 
-        /* المودال (صفحة الطلب) */
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 5000; padding: 20px; overflow-y: auto; }
-        .modal-body { max-width: 500px; margin: auto; background: #111; padding: 25px; border-radius: 25px; border: 2px solid var(--gold); }
-        .input-style { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 12px; border: 1px solid #333; background: #000; color: #fff; box-sizing: border-box; }
-        .confirm-btn { background: var(--red-neon); color: #fff; width: 100%; padding: 18px; border: none; border-radius: 15px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px var(--red-neon); }
+        /* Cart Modal Design */
+        .cart-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.96); z-index: 10000; padding: 20px; overflow-y: auto; }
+        .cart-content { max-width: 550px; margin: auto; background: #000; border: 2px solid var(--gold); border-radius: 30px; padding: 30px; box-shadow: 0 0 50px rgba(212, 175, 55, 0.2); }
+        .cart-header { color: var(--gold); text-align: center; font-size: 28px; margin-bottom: 30px; border-bottom: 1px solid var(--gold); padding-bottom: 15px; }
+        .line-item { display: flex; justify-content: space-between; align-items: center; background: #111; padding: 15px; border-radius: 15px; margin-bottom: 12px; border-right: 4px solid var(--red); }
+        .cart-total { font-size: 30px; text-align: center; margin: 30px 0; color: var(--gold); font-weight: 900; background: #111; padding: 15px; border-radius: 20px; }
+        
+        .field { width: 100%; padding: 18px; margin-bottom: 15px; border-radius: 15px; border: 1px solid #333; background: #0a0a0a; color: #fff; font-size: 16px; outline: none; transition: 0.3s; }
+        .field:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
+        .btn-order { background: linear-gradient(to left, #ff0000, #b30000); color: #fff; width: 100%; padding: 20px; border: none; border-radius: 20px; font-size: 22px; font-weight: 900; cursor: pointer; box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4); }
     </style>
 </head>
 <body>
 
-<div class="cart-icon" onclick="openCart()">
-    <i class="fas fa-shopping-basket fa-lg"></i>
-    <span id="cart-count">0</span>
+<div class="cart-trigger" onclick="toggleCart()">
+    <i class="fas fa-shopping-cart fa-2x"></i>
+    <span id="cart-badge">0</span>
 </div>
 
-<div class="header">
-    <div class="logo-box"><h1 style="margin:0; color:var(--gold);">TOSTA</h1></div>
-    <h2 class="res-name">مطعم توستا</h2>
-    <p style="color:var(--gold); letter-spacing: 2px;">الأكل بشكل تاني</p>
-</div>
+<header class="header">
+    <div class="logo-wrap"><h1 style="margin:0; color:var(--gold); font-size:40px;">T</h1></div>
+    <div class="res-title">مطعم توستا</div>
+    <div class="sub-title">TOSTA - LUXURY FOOD</div>
+    <p style="color: #666; margin-top: 10px;">ش الصحة القديم - متفرع من الشعراوي</p>
+</header>
 
-<div class="tabs-container">
-    <button class="tab active" onclick="scrollToCat('crepe')">الكريب الحادق</button>
-    <button class="tab" onclick="scrollToCat('pizza')">ركن البيتزا</button>
-    <button class="tab" onclick="scrollToCat('meals')">الوجبات والبروست</button>
-    <button class="tab" onclick="scrollToCat('sweet')">الفطير الحلو</button>
-</div>
+<nav class="menu-nav">
+    <button class="nav-link active" onclick="jump('crepe-sec')">كريب</button>
+    <button class="nav-link" onclick="jump('pizza-sec')">بيتزا</button>
+    <button class="nav-link" onclick="jump('fater-sec')">فطير</button>
+    <button class="nav-link" onclick="jump('meals-sec')">وجبات</button>
+    <button class="nav-link" onclick="jump('burger-sec')">برجر</button>
+</nav>
 
-<div class="container">
-    <div id="crepe">
-        <h2 class="category-header">🌯 كريب حادق (عادي / كونو)</h2>
-        <div class="food-card">
-            <span class="food-name">كريب بطاطس</span>
-            <div class="price-row">
-                <button class="btn-add" onclick="buy('كريب بطاطس عادي', 60)">عادي <span>60ج</span></button>
-                <button class="btn-add" onclick="buy('كريب بطاطس كونو', 70)">كونو <span>70ج</span></button>
+<div class="section-container">
+    
+    <div id="crepe-sec">
+        <h2 class="cat-heading">🌯 ركن الكريب الحادق</h2>
+        <div class="items-grid">
+            <div class="item-luxury-card">
+                <span class="item-label">كريب بطاطس</span>
+                <div class="options-box">
+                    <button class="opt-btn" onclick="add('بطاطس عادي', 60)"><span class="type">عادي</span><span class="val">60ج</span></button>
+                    <button class="opt-btn" onclick="add('بطاطس كونو', 70)"><span class="type">كونو</span><span class="val">70ج</span></button>
+                </div>
             </div>
-        </div>
-        <div class="food-card">
-            <span class="food-name">كريب ميكس لحوم</span>
-            <div class="price-row">
-                <button class="btn-add" onclick="buy('ميكس لحوم عادي', 95)">عادي <span>95ج</span></button>
-                <button class="btn-add" onclick="buy('ميكس لحوم كونو', 115)">كونو <span>115ج</span></button>
+            <div class="item-luxury-card">
+                <span class="item-label">كريب ميكس جبن</span>
+                <div class="options-box">
+                    <button class="opt-btn" onclick="add('ميكس جبن عادي', 75)"><span class="type">عادي</span><span class="val">75ج</span></button>
+                    <button class="opt-btn" onclick="add('ميكس جبن كونو', 85)"><span class="type">كونو</span><span class="val">85ج</span></button>
+                </div>
+            </div>
+            <div class="item-luxury-card">
+                <span class="item-label">كريب بانية / كريسبي</span>
+                <div class="options-box">
+                    <button class="opt-btn" onclick="add('بانية عادي', 85)"><span class="type">عادي</span><span class="val">85ج</span></button>
+                    <button class="opt-btn" onclick="add('بانية كونو', 95)"><span class="type">كونو</span><span class="val">95ج</span></button>
+                </div>
             </div>
         </div>
     </div>
 
-    <div id="pizza">
-        <h2 class="category-header">🍕 ركن البيتزا (4 أحجام)</h2>
-        <div class="food-card">
-            <span class="food-name">بيتزا مارجريتا</span>
-            <div class="price-row">
-                <button class="btn-add" onclick="buy('مارجريتا S', 70)">S <span>70ج</span></button>
-                <button class="btn-add" onclick="buy('مارجريتا M', 80)">M <span>80ج</span></button>
-                <button class="btn-add" onclick="buy('مارجريتا L', 90)">L <span>90ج</span></button>
-                <button class="btn-add" onclick="buy('مارجريتا XL', 100)">XL <span>100ج</span></button>
+    <div id="pizza-sec">
+        <h2 class="cat-heading">🍕 ركن البيتزا الملكي</h2>
+        <div class="items-grid">
+            <div class="item-luxury-card">
+                <span class="item-label">بيتزا سوبر ستار</span>
+                <div class="options-box">
+                    <button class="opt-btn" onclick="add('ستار S', 100)"><span class="type">S</span><span class="val">100ج</span></button>
+                    <button class="opt-btn" onclick="add('ستار M', 120)"><span class="type">M</span><span class="val">120ج</span></button>
+                    <button class="opt-btn" onclick="add('ستار L', 150)"><span class="type">L</span><span class="val">150ج</span></button>
+                    <button class="opt-btn" onclick="add('ستار XL', 160)"><span class="type">XL</span><span class="val">160ج</span></button>
+                </div>
+            </div>
+            <div class="item-luxury-card">
+                <span class="item-label">بيتزا سي فود</span>
+                <div class="options-box">
+                    <button class="opt-btn" onclick="add('سي فود S', 100)"><span class="type">S</span><span class="val">100ج</span></button>
+                    <button class="opt-btn" onclick="add('سي فود M', 130)"><span class="type">M</span><span class="val">130ج</span></button>
+                    <button class="opt-btn" onclick="add('سي فود L', 150)"><span class="type">L</span><span class="val">150ج</span></button>
+                </div>
             </div>
         </div>
     </div>
+
+    <div id="meals-sec">
+        <h2 class="cat-heading">🍗 ركن الوجبات والفتات</h2>
+        <div class="items-grid">
+            <div class="item-luxury-card">
+                <span class="item-label">وجبة توستا (العملاقة)</span>
+                <p style="font-size:12px; color:#666">بروستد+بانيه+شيش+ستريبس+كوردن بلو</p>
+                <div class="options-box">
+                    <button class="opt-btn" style="width:100%" onclick="add('وجبة توستا', 250)"><span class="type">كاملة</span><span class="val">250ج</span></button>
+                </div>
+            </div>
+            <div class="item-luxury-card">
+                <span class="item-label">فتة شاورما فراخ</span>
+                <div class="options-box">
+                    <button class="opt-btn" onclick="add('فتة شاورما عادي', 110)"><span class="type">عادي</span><span class="val">110ج</span></button>
+                    <button class="opt-btn" onclick="add('فتة شاورما XL', 120)"><span class="type">XL</span><span class="val">120ج</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
-<div id="cartModal" class="modal">
-    <div class="modal-body">
-        <button onclick="openCart()" style="background:none; color:var(--red-neon); border:none; float:left; font-size:20px;">X</button>
-        <h2 style="color:var(--gold); text-align:center;">🛒 فاتورتك من توستا</h2>
-        <div id="cartItems" style="margin:20px 0; border-bottom:1px solid #333; padding-bottom:10px;"></div>
-        <div style="text-align:center; font-size:22px; margin-bottom:20px;">الإجمالي: <span id="total" style="color:var(--gold)">0</span> ج</div>
+<div id="cartModal" class="cart-modal">
+    <div class="cart-content">
+        <h2 class="cart-header">🛒 طلباتك من توستا</h2>
+        <div id="cart-list"></div>
+        <div class="cart-total">الحساب: <span id="final-price">0</span> ج</div>
         
-        <input type="text" id="uName" class="input-style" placeholder="اسمك يا بطل">
-        <input type="tel" id="uPhone" class="input-style" placeholder="رقم الموبايل">
-        <textarea id="uAddr" class="input-style" rows="3" placeholder="العنوان بالتفصيل"></textarea>
-        
-        <button class="confirm-btn" onclick="checkout()">إرسال للواتساب (توصيل سريع) 🏎️</button>
+        <div class="form-order">
+            <input type="text" id="name" class="field" placeholder="الاسم بالكامل">
+            <input type="tel" id="tel" class="field" placeholder="رقم الموبايل">
+            <textarea id="addr" class="field" rows="3" placeholder="العنوان بالتفصيل (عشان الدليفري يوصل طيارة)"></textarea>
+            <button class="btn-order" onclick="submitOrder()">تأكيد الطلب عبر واتساب 🚀</button>
+            <button onclick="toggleCart()" style="width:100%; background:none; border:none; color:#666; margin-top:15px; cursor:pointer">إكمال التسوق</button>
+        </div>
     </div>
 </div>
 
 <script>
-    let cart = [];
-    let total = 0;
+    let basket = [];
+    let grandTotal = 0;
 
-    function buy(name, price) {
-        cart.push({name, price});
-        update();
-        // انيميشن بسيط
-        document.querySelector('.cart-icon').style.transform = 'scale(1.2)';
-        setTimeout(() => document.querySelector('.cart-icon').style.transform = 'scale(1)', 200);
+    function add(item, price) {
+        basket.push({item, price});
+        sync();
+        const btn = event.currentTarget;
+        btn.style.background = '#d4af37';
+        btn.style.color = '#000';
+        setTimeout(() => { btn.style.background = '#1a1a1a'; btn.style.color = '#fff'; }, 300);
     }
 
-    function update() {
-        document.getElementById('cart-count').innerText = cart.length;
-        let html = ''; total = 0;
-        cart.forEach((it, i) => {
-            total += it.price;
-            html += `<div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-                        <span>${it.name}</span>
-                        <span>${it.price}ج <i class="fas fa-times" onclick="remove(${i})" style="color:red; margin-right:10px; cursor:pointer"></i></span>
-                     </div>`;
+    function sync() {
+        document.getElementById('cart-badge').innerText = basket.length;
+        let list = document.getElementById('cart-list');
+        list.innerHTML = '';
+        grandTotal = 0;
+        basket.forEach((obj, i) => {
+            grandTotal += obj.price;
+            list.innerHTML += `
+                <div class="line-item">
+                    <span style="font-weight:bold">${obj.item}</span>
+                    <span>${obj.price}ج <i class="fas fa-trash-alt" onclick="del(${i})" style="color:var(--red); margin-right:15px; cursor:pointer"></i></span>
+                </div>`;
         });
-        document.getElementById('cartItems').innerHTML = html;
-        document.getElementById('total').innerText = total;
+        document.getElementById('final-price').innerText = grandTotal;
     }
 
-    function remove(i) { cart.splice(i,1); update(); }
-    function openCart() { let m = document.getElementById('cartModal'); m.style.display = (m.style.display == 'block') ? 'none' : 'block'; }
+    function del(i) { basket.splice(i, 1); sync(); }
+    function toggleCart() { let m = document.getElementById('cartModal'); m.style.display = (m.style.display == 'block') ? 'none' : 'block'; }
 
-    function checkout() {
-        let n = document.getElementById('uName').value;
-        let p = document.getElementById('uPhone').value;
-        let a = document.getElementById('uAddr').value;
-        if(!n || !a) { alert('الاسم والعنوان يا هندسة!'); return; }
+    function submitOrder() {
+        let n = document.getElementById('name').value;
+        let t = document.getElementById('tel').value;
+        let a = document.getElementById('addr').value;
+        
+        if(!n || !a || basket.length == 0) { alert('يا هندسة كمل بياناتك وضيف أكل للسلة!'); return; }
 
-        let msg = `*طلب جديد من مطعم توستا* 🍔%0A%0A*العميل:* ${n}%0A*الموبايل:* ${p}%0A*العنوان:* ${a}%0A%0A*الطلبات:*%0A`;
-        cart.forEach(it => msg += `- ${it.name}: ${it.price}ج%0A`);
-        msg += `%0A*الإجمالي:* ${total} جنيه`;
+        let text = `🔥 *طلب جديد من توستا* 🔥%0A%0A`;
+        text += `👤 *العميل:* ${n}%0A📱 *موبايل:* ${t}%0A📍 *العنوان:* ${a}%0A%0A`;
+        text += `📝 *الأصناف:*%0A`;
+        basket.forEach(o => text += `- ${o.item} (${o.price}ج)%0A`);
+        text += `%0A💰 *الإجمالي:* ${grandTotal} جنيه`;
 
-        window.open(`https://wa.me/201030353060?text=${msg}`);
+        window.open(`https://wa.me/201030353060?text=${text}`);
     }
 
-    function scrollToCat(id) { document.getElementById(id).scrollIntoView({behavior: 'smooth'}); }
+    function jump(id) {
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        event.target.classList.add('active');
+        document.getElementById(id).scrollIntoView({behavior: 'smooth'});
+    }
 </script>
+
 </body>
-</html>
+    </html>
