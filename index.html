@@ -3,211 +3,206 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tosta • توستا | النموذج النهائي</title>
+  <title>Tosta • توستا</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { font-family: 'Cairo', sans-serif; }
     body {
-      background: #000000;
+      background: #0a0a0a;
+      background-image: 
+        radial-gradient(ellipse at 30% 20%, rgba(212,175,55,0.03) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 80%, rgba(255,0,0,0.02) 0%, transparent 60%);
       margin: 0; padding: 0;
-      position: relative;
     }
-    /* ووترمارك */
-    body::before {
-      content: 'TOSTA';
-      position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%) rotate(-20deg);
-      font-family: 'Playfair Display', serif;
-      font-size: 15vw;
-      font-weight: 700;
-      color: rgba(255,255,255,0.015);
-      pointer-events: none;
-      z-index: 0;
-      letter-spacing: 20px;
-    }
+    
+    /* زجاج أنيق */
     .glass {
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(18, 18, 18, 0.7);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(201, 168, 76, 0.3);
+      border: 1px solid rgba(201, 168, 76, 0.12);
     }
-    .card-solid {
-      background: #000000;
-      border: 2px solid #c9a84c;
-      transition: all 0.4s ease;
-      position: relative;
-      z-index: 1;
-      border-radius: 0;
+    
+    /* كارت المنتج */
+    .glass-card {
+      background: rgba(20, 20, 20, 0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      transition: all 0.35s ease;
     }
-    .card-solid:hover {
-      box-shadow: 0 0 40px rgba(201, 168, 76, 0.5), 0 15px 30px rgba(0,0,0,0.8);
-      transform: translateY(-6px);
+    .glass-card:hover {
+      border-color: rgba(201, 168, 76, 0.45);
+      background: rgba(28, 28, 28, 0.75);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
     }
-    .card-solid::after {
-      content: '';
-      position: absolute;
-      top: 0; right: 0; bottom: 0;
-      width: 4px;
-      background: #c9a84c;
-      box-shadow: 0 0 15px #c9a84c;
-    }
-    .price-circle {
-      background: #c9a84c;
-      color: #000;
-      font-weight: 800;
-      width: 65px;
-      height: 65px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      box-shadow: 0 0 25px rgba(201, 168, 76, 0.6);
-    }
+    
+    /* لون ذهبي موحد */
     .gold-text { color: #c9a84c; }
+    .gold-border { border-color: rgba(201, 168, 76, 0.5); }
+    
+    /* خط ذهبي فاصل */
+    .gold-line {
+      background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.5), transparent);
+      height: 1px;
+    }
+    
+    /* زر أساسي */
     .btn-primary {
-      background: #c9a84c;
-      color: #000;
-      font-weight: 700;
-      border: none;
+      background: rgba(201, 168, 76, 0.1);
+      border: 1px solid rgba(201, 168, 76, 0.35);
+      color: #c9a84c;
       transition: all 0.3s ease;
-      border-radius: 0;
-      letter-spacing: 1px;
     }
     .btn-primary:hover {
-      background: #fff;
-      box-shadow: 0 0 30px rgba(201, 168, 76, 0.7);
+      background: #c9a84c;
+      color: #0a0a0a;
+      border-color: #c9a84c;
     }
-    .tab {
-      color: #888;
-      border-bottom: 3px solid transparent;
+    
+    /* زر الإضافة */
+    .btn-add {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #fff;
       transition: all 0.3s ease;
-      font-weight: 600;
-      font-size: 17px;
-      padding: 12px 20px;
-      border-radius: 0;
+    }
+    .btn-add:hover {
+      background: #fff;
+      color: #0a0a0a;
+      border-color: #fff;
+    }
+    
+    /* تبويبات */
+    .tab {
+      color: #777;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      font-size: 16px;
+      padding: 10px 20px;
+      white-space: nowrap;
     }
     .tab.active {
       color: #c9a84c;
       border-bottom-color: #c9a84c;
-      font-weight: 800;
+      font-weight: 700;
     }
+    .tab:hover { color: #aaa; }
+    
+    /* شارة السلة */
     .cart-badge {
       background: #c9a84c;
-      color: #000;
-      font-weight: 800;
+      color: #0a0a0a;
+      font-weight: 700;
       font-size: 10px;
-      min-width: 20px;
-      height: 20px;
+      min-width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: #000; }
-    ::-webkit-scrollbar-thumb { background: #c9a84c; border-radius: 0; }
+    
+    /* حقول الإدخال */
     .input-elegant {
-      background: #111;
-      border: 1px solid #333;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
       color: #fff;
-      border-radius: 0;
       transition: all 0.3s ease;
     }
     .input-elegant:focus {
       outline: none;
-      border-color: #c9a84c;
-      background: #1a1a1a;
+      border-color: rgba(201, 168, 76, 0.45);
+      background: rgba(255, 255, 255, 0.04);
     }
-    .toast {
-      position: fixed;
-      top: 30px;
-      left: 50%;
-      transform: translateX(-50%) translateY(-150px);
-      background: #000;
-      border: 2px solid #c9a84c;
-      color: #c9a84c;
-      padding: 14px 28px;
-      font-weight: 700;
-      z-index: 999;
-      transition: transform 0.4s ease;
-      border-radius: 0;
-      font-size: 15px;
-    }
-    .toast.show { transform: translateX(-50%) translateY(0); }
-    @keyframes pulse { 0%{transform:scale(1)} 50%{transform:scale(1.3)} 100%{transform:scale(1)} }
-    .pulse { animation: pulse 0.4s ease; }
-    .grid-separator {
-      border-right: 1px solid rgba(201,168,76,0.2);
-      border-bottom: 1px solid rgba(201,168,76,0.2);
-    }
-    /* أنيميشن دخول الكروت */
-    .card-animate {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeUp 0.6s ease forwards;
-    }
-    @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+    .input-elegant::placeholder { color: #555; }
+    
+    /* سكرول بار */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
   </style>
 </head>
 <body class="text-gray-100 min-h-screen antialiased">
 
-  <!-- TOAST -->
-  <div id="toast" class="toast">✅ تمت الإضافة للسلة</div>
-
   <!-- NAVBAR -->
-  <header class="sticky top-0 z-50 glass">
-    <div class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between">
+  <header class="sticky top-0 z-50 glass border-b border-white/5">
+    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <!-- لوجو -->
-        <div class="w-10 h-10 rounded-full bg-black border-2 border-[#c9a84c] flex items-center justify-center" style="box-shadow: 0 0 15px rgba(201,168,76,0.4);">
-          <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700;" class="text-xl gold-text">T</span>
-        </div>
-        <span class="text-xl font-extrabold tracking-wider gold-text">TOSTA</span>
+        <span class="text-2xl font-extrabold tracking-wide gold-text">TOSTA</span>
+        <span class="hidden sm:inline text-[10px] text-gray-500 tracking-[0.2em] uppercase">مطعم</span>
       </div>
-      <button id="cartToggleBtn" class="relative p-2 hover:bg-white/5 transition">
-        <i class="fas fa-shopping-bag text-xl text-gray-300"></i>
-        <span id="cartCountBadge" class="cart-badge absolute -top-1 -right-1 rounded-full items-center justify-center hidden">0</span>
+      <button id="cartToggleBtn" class="relative p-2 rounded-full hover:bg-white/5 transition">
+        <i class="fas fa-shopping-bag text-lg text-gray-400"></i>
+        <span id="cartCountBadge" class="cart-badge absolute -top-1 -right-1 rounded-full hidden">0</span>
       </button>
     </div>
-    <div class="max-w-6xl mx-auto px-5 pb-3 flex gap-4 overflow-x-auto">
-      <button class="tab active whitespace-nowrap">🍟 كريب</button>
-      <button class="tab whitespace-nowrap">🍕 بيتزا</button>
-      <button class="tab whitespace-nowrap">🥮 فطير</button>
-      <button class="tab whitespace-nowrap">🍗 وجبات</button>
+    
+    <!-- تبويبات -->
+    <div class="max-w-6xl mx-auto px-6 pb-3 flex gap-3 overflow-x-auto">
+      <button class="tab active">🍢 كريب</button>
+      <button class="tab">🍕 بيتزا</button>
+      <button class="tab">🥮 فطير</button>
+      <button class="tab">🍗 وجبات</button>
+      <button class="tab">🥪 ساندوتشات</button>
+      <button class="tab">🍝 مكرونة</button>
+      <button class="tab">🥤 مشروبات</button>
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-5 py-12 pb-40 relative z-10">
-    <div class="text-center mb-12">
-      <h2 class="text-4xl font-bold gold-text mb-2">الكريب</h2>
-      <p class="text-sm text-gray-400">عادي / كونو</p>
-      <div style="background: #c9a84c; height: 2px; width: 60px; margin: 15px auto 0;"></div>
+  <!-- المحتوى الرئيسي -->
+  <main class="max-w-6xl mx-auto px-6 py-12 pb-36">
+    
+    <!-- عنوان القسم -->
+    <div class="text-center mb-10">
+      <h2 class="text-3xl font-bold gold-text mb-2">الكريب</h2>
+      <p class="text-sm text-gray-500">عادي / كونو</p>
+      <div class="gold-line w-20 mx-auto mt-4"></div>
     </div>
 
     <!-- شبكة الكروت -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       
-      <!-- كارت واحد -->
-      <div class="card-solid card-animate" style="animation-delay: 0.1s;">
-        <div class="relative h-48 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600&h=400&fit=crop" alt="بطاطس" class="w-full h-full object-cover">
-          <div class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/70 flex items-center justify-center text-sm">🍟</div>
+      <!-- كارت بطاطس -->
+      <div class="glass-card rounded-2xl overflow-hidden">
+        
+        <!-- صورة المنتج -->
+        <div class="relative h-44 overflow-hidden">
+          <img 
+            src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600&h=400&fit=crop&crop=center" 
+            alt="بطاطس مقلية ذهبية" 
+            class="w-full h-full object-cover transition duration-500 hover:scale-105"
+            loading="lazy"
+          >
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
         </div>
-        <div class="p-6 flex flex-col gap-4">
-          <h3 class="text-2xl font-extrabold text-white">بطاطس</h3>
-          <p class="text-sm text-gray-400 -mt-2">فريش • مقرمشة</p>
-          <div class="flex items-center gap-4 mt-2">
-            <div class="price-circle">60</div>
-            <span class="text-gray-500 text-lg">—</span>
-            <div class="price-circle">70</div>
+        
+        <!-- تفاصيل المنتج -->
+        <div class="p-5">
+          <div class="flex items-start justify-between mb-3">
+            <div>
+              <h3 class="text-lg font-semibold text-white">بطاطس</h3>
+              <span class="text-xs text-gray-500">فريش • مقرمشة</span>
+            </div>
+            <span class="text-[10px] text-gray-400 bg-white/5 px-2 py-1 rounded-full border border-white/5">عادي / كونو</span>
           </div>
-          <div class="flex items-center gap-3 mt-2">
-            <button onclick="changeQty(-1)" class="w-10 h-10 border border-gray-600 text-white hover:bg-white hover:text-black transition font-bold text-lg">−</button>
-            <span id="qtyDisplay" class="text-xl font-bold gold-text w-8 text-center">1</span>
-            <button onclick="changeQty(1)" class="w-10 h-10 border border-gray-600 text-white hover:bg-white hover:text-black transition font-bold text-lg">+</button>
+          
+          <!-- السعر -->
+          <div class="flex items-baseline gap-2 mb-5">
+            <span class="text-2xl font-bold text-white">60</span>
+            <span class="text-sm text-gray-500">ج</span>
+            <span class="text-gray-600 mx-1">—</span>
+            <span class="text-2xl font-bold text-white">70</span>
+            <span class="text-sm text-gray-500">ج</span>
           </div>
-          <button onclick="addToCart()" class="btn-primary w-full py-3 text-base mt-2">
-            أضف للطلب <i class="fas fa-plus mr-2"></i>
+          
+          <!-- زر الإضافة -->
+          <button onclick="addToCart('بطاطس', 60, 'عادي')" class="btn-add w-full py-3 rounded-xl text-sm font-medium tracking-wide">
+            أضف للطلب
+            <i class="fas fa-plus mr-2 text-xs opacity-60"></i>
           </button>
         </div>
       </div>
@@ -215,49 +210,136 @@
     </div>
   </main>
 
-  <!-- زرار الرجوع للأعلى -->
-  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed bottom-24 right-5 w-12 h-12 bg-black border-2 border-[#c9a84c] text-[#c9a84c] rounded-none flex items-center justify-center text-xl z-30 hover:bg-[#c9a84c] hover:text-black transition shadow-lg" style="box-shadow:0 0 20px rgba(201,168,76,0.4);">⬆</button>
-
-  <!-- سلة عائمة -->
-  <div id="floatingCart" class="fixed bottom-0 left-0 right-0 z-40 glass p-5 hidden max-w-6xl mx-auto">
-    <div class="flex justify-between mb-3"><span class="font-bold text-white">الطلبات</span><button id="closeCartBtn" class="text-gray-500">✕</button></div>
-    <div id="cartItemsList" class="max-h-40 overflow-y-auto text-sm mb-3"><p class="text-gray-500">لا طلبات</p></div>
-    <div class="flex justify-between"><span>الإجمالي</span><span id="cartTotalPrice" class="gold-text font-bold">0 ج</span></div>
-    <div class="flex justify-between mt-1"><span class="text-gray-500">التوصيل</span><span class="text-gray-500">15 ج</span></div>
-    <div class="flex justify-between border-t border-white/10 pt-2 mt-2"><span class="text-white font-bold">النهائي</span><span id="cartFinalPrice" class="gold-text text-xl font-bold">0 ج</span></div>
-    <button id="checkoutBtn" class="btn-primary w-full mt-4 py-3 disabled:opacity-30" disabled>تأكيد الطلب</button>
+  <!-- السلة العائمة -->
+  <div id="floatingCart" class="fixed bottom-0 left-0 right-0 z-40 glass rounded-t-3xl p-5 hidden max-w-6xl mx-auto">
+    <div class="flex items-center justify-between mb-3">
+      <div class="flex items-center gap-2">
+        <i class="fas fa-shopping-bag gold-text"></i>
+        <span class="font-bold text-white">الطلبات</span>
+        <span id="cartCountInline" class="text-xs text-gray-500">(0)</span>
+      </div>
+      <button id="closeCartBtn" class="text-gray-500 hover:text-white transition"><i class="fas fa-times"></i></button>
+    </div>
+    
+    <div id="cartItemsList" class="max-h-40 overflow-y-auto space-y-2 mb-3 text-sm">
+      <p class="text-gray-500 text-center">لا توجد طلبات بعد</p>
+    </div>
+    
+    <div class="flex items-center justify-between border-t border-white/5 pt-3">
+      <span class="text-gray-400">الإجمالي</span>
+      <span id="cartTotalPrice" class="text-xl font-bold gold-text">0 ج</span>
+    </div>
+    
+    <button id="checkoutBtn" class="btn-primary w-full mt-4 py-3 rounded-xl font-semibold text-sm tracking-wide disabled:opacity-30 disabled:cursor-not-allowed" disabled>
+      متابعة الطلب
+    </button>
   </div>
 
-  <!-- فوتر -->
-  <footer class="border-t border-[#c9a84c] py-6 px-5 text-center text-gray-500 text-sm relative z-10">
-    <div class="flex flex-wrap justify-center gap-6">
-      <span><i class="fas fa-map-marker-alt gold-text ml-1"></i> شارع المطاعم، القاهرة</span>
-      <span><i class="fas fa-phone gold-text ml-1"></i> 01030353060</span>
-      <span><i class="fas fa-clock gold-text ml-1"></i> 11 ص - 2 ص</span>
+  <!-- نافذة إكمال البيانات -->
+  <div id="checkoutPopup" class="fixed inset-0 z-50 items-center justify-center hidden" style="background: rgba(0,0,0,0.7); backdrop-filter: blur(12px); display: none;">
+    <div class="glass-card rounded-3xl p-6 w-11/12 max-w-md">
+      <h2 class="text-xl font-bold text-white mb-5 text-center">إكمال البيانات</h2>
+      
+      <div class="space-y-3">
+        <input type="text" id="custName" placeholder="الاسم الكريم" class="input-elegant w-full rounded-xl px-4 py-3 text-sm">
+        <input type="tel" id="custPhone" placeholder="رقم الموبايل" class="input-elegant w-full rounded-xl px-4 py-3 text-sm">
+        <textarea id="custAddress" rows="2" placeholder="العنوان بالتفصيل" class="input-elegant w-full rounded-xl px-4 py-3 text-sm"></textarea>
+      </div>
+      
+      <div class="flex gap-3 mt-6">
+        <button id="closePopupBtn" class="flex-1 py-3 rounded-xl text-sm text-gray-500 border border-white/10 hover:text-white transition">إلغاء</button>
+        <button id="sendWhatsAppBtn" class="flex-1 btn-primary py-3 rounded-xl text-sm font-semibold">إرسال للواتساب</button>
+      </div>
     </div>
-  </footer>
+  </div>
 
   <script>
-    let qty = 1;
-    function changeQty(d) { qty = Math.max(1, qty+d); document.getElementById('qtyDisplay').textContent = qty; }
     let cart = [];
-    function updateUI() {
-      let t=0; cart.forEach(i=>t+=i.price*i.qty);
-      document.getElementById('cartTotalPrice').textContent = t+' ج';
-      document.getElementById('cartFinalPrice').textContent = (t+15)+' ج';
-      document.getElementById('cartCountBadge').textContent = cart.reduce((s,i)=>s+i.qty,0);
+    
+    function updateCartUI() {
+      const cartList = document.getElementById('cartItemsList');
+      const totalSpan = document.getElementById('cartTotalPrice');
+      const badge = document.getElementById('cartCountBadge');
+      const inline = document.getElementById('cartCountInline');
+      const checkoutBtn = document.getElementById('checkoutBtn');
+      
+      if (cart.length === 0) {
+        cartList.innerHTML = '<p class="text-gray-500 text-center">لا توجد طلبات بعد</p>';
+        totalSpan.textContent = '0 ج';
+        badge.classList.add('hidden');
+        inline.textContent = '(0)';
+        checkoutBtn.disabled = true;
+        return;
+      }
+      
+      badge.classList.remove('hidden');
+      badge.textContent = cart.length;
+      inline.textContent = '(' + cart.length + ')';
+      
+      let total = 0;
+      cartList.innerHTML = cart.map((item, i) => {
+        total += item.price;
+        return `
+          <div class="flex items-center justify-between py-2">
+            <span class="text-white text-sm">${item.name} <span class="text-gray-500 text-xs">${item.type}</span></span>
+            <div class="flex items-center gap-3">
+              <span class="gold-text text-sm font-semibold">${item.price} ج</span>
+              <button onclick="removeFromCart(${i})" class="text-gray-500 hover:text-red-400 transition text-xs"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+        `;
+      }).join('');
+      
+      totalSpan.textContent = total + ' ج';
+      checkoutBtn.disabled = false;
     }
-    function addToCart() {
-      cart.push({name:'بطاطس',price:60,type:'عادي',qty});
-      qty=1; document.getElementById('qtyDisplay').textContent='1';
-      updateUI();
+    
+    function addToCart(name, price, type = '') {
+      cart.push({ name, price, type });
+      updateCartUI();
       document.getElementById('floatingCart').classList.remove('hidden');
-      let toast = document.getElementById('toast');
-      toast.classList.add('show');
-      setTimeout(()=>toast.classList.remove('show'), 2000);
-      document.getElementById('cartToggleBtn').classList.add('pulse');
-      setTimeout(()=>document.getElementById('cartToggleBtn').classList.remove('pulse'),400);
     }
+    
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+    
+    // أحداث السلة
+    document.getElementById('cartToggleBtn').addEventListener('click', () => {
+      document.getElementById('floatingCart').classList.toggle('hidden');
+    });
+    
+    document.getElementById('closeCartBtn').addEventListener('click', () => {
+      document.getElementById('floatingCart').classList.add('hidden');
+    });
+    
+    // أحداث النافذة المنبثقة
+    document.getElementById('checkoutBtn').addEventListener('click', () => {
+      document.getElementById('checkoutPopup').style.display = 'flex';
+    });
+    
+    document.getElementById('closePopupBtn').addEventListener('click', () => {
+      document.getElementById('checkoutPopup').style.display = 'none';
+    });
+    
+    // إرسال واتساب
+    document.getElementById('sendWhatsAppBtn').addEventListener('click', () => {
+      const name = document.getElementById('custName').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const address = document.getElementById('custAddress').value.trim();
+      
+      if (!name || !phone || !address) {
+        alert('من فضلك أكمل جميع البيانات');
+        return;
+      }
+      
+      let order = cart.map((item, i) => `${i+1}. ${item.name} (${item.type}) - ${item.price} ج`).join('%0A');
+      let total = cart.reduce((s, i) => s + i.price, 0);
+      let msg = `*TOSTA | طلب جديد*%0A%0A👤 ${name}%0A📞 ${phone}%0A📍 ${address}%0A%0A📋 الطلب:%0A${order}%0A%0A💰 الإجمالي: ${total} ج`;
+      
+      window.open(`https://wa.me/201030353060?text=${msg}`, '_blank');
+    });
   </script>
 </body>
-</html>
+        </html>
