@@ -1,345 +1,149 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tosta • توستا</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    * { font-family: 'Cairo', sans-serif; }
-    body {
-      background: #0a0a0a;
-      background-image: 
-        radial-gradient(ellipse at 30% 20%, rgba(212,175,55,0.03) 0%, transparent 60%),
-        radial-gradient(ellipse at 70% 80%, rgba(255,0,0,0.02) 0%, transparent 60%);
-      margin: 0; padding: 0;
-    }
-    
-    /* زجاج أنيق */
-    .glass {
-      background: rgba(18, 18, 18, 0.7);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(201, 168, 76, 0.12);
-    }
-    
-    /* كارت المنتج */
-    .glass-card {
-      background: rgba(20, 20, 20, 0.55);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(201, 168, 76, 0.15);
-      transition: all 0.35s ease;
-    }
-    .glass-card:hover {
-      border-color: rgba(201, 168, 76, 0.45);
-      background: rgba(28, 28, 28, 0.75);
-      transform: translateY(-3px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-    }
-    
-    /* لون ذهبي موحد */
-    .gold-text { color: #c9a84c; }
-    .gold-border { border-color: rgba(201, 168, 76, 0.5); }
-    
-    /* خط ذهبي فاصل */
-    .gold-line {
-      background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.5), transparent);
-      height: 1px;
-    }
-    
-    /* زر أساسي */
-    .btn-primary {
-      background: rgba(201, 168, 76, 0.1);
-      border: 1px solid rgba(201, 168, 76, 0.35);
-      color: #c9a84c;
-      transition: all 0.3s ease;
-    }
-    .btn-primary:hover {
-      background: #c9a84c;
-      color: #0a0a0a;
-      border-color: #c9a84c;
-    }
-    
-    /* زر الإضافة */
-    .btn-add {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: #fff;
-      transition: all 0.3s ease;
-    }
-    .btn-add:hover {
-      background: #fff;
-      color: #0a0a0a;
-      border-color: #fff;
-    }
-    
-    /* تبويبات */
-    .tab {
-      color: #777;
-      border-bottom: 2px solid transparent;
-      transition: all 0.3s ease;
-      font-weight: 500;
-      font-size: 16px;
-      padding: 10px 20px;
-      white-space: nowrap;
-    }
-    .tab.active {
-      color: #c9a84c;
-      border-bottom-color: #c9a84c;
-      font-weight: 700;
-    }
-    .tab:hover { color: #aaa; }
-    
-    /* شارة السلة */
-    .cart-badge {
-      background: #c9a84c;
-      color: #0a0a0a;
-      font-weight: 700;
-      font-size: 10px;
-      min-width: 18px;
-      height: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    /* حقول الإدخال */
-    .input-elegant {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      color: #fff;
-      transition: all 0.3s ease;
-    }
-    .input-elegant:focus {
-      outline: none;
-      border-color: rgba(201, 168, 76, 0.45);
-      background: rgba(255, 255, 255, 0.04);
-    }
-    .input-elegant::placeholder { color: #555; }
-    
-    /* سكرول بار */
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: #0a0a0a; }
-    ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطعم BURGER - اطلب أونلاين</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --primary-color: #ff9800;
+            --text-color: #ffffff;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding-bottom: 80px;
+        }
+
+        header {
+            padding: 20px;
+            text-align: center;
+            background: linear-gradient(to bottom, #1e1e1e, #121212);
+        }
+
+        .banner {
+            width: 90%;
+            margin: 10px auto;
+            background: var(--primary-color);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: right;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding: 15px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            margin-top: -30px; /* لحركة خروج الصورة من الكارت */
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5));
+        }
+
+        .card h3 { margin: 10px 0 5px; font-size: 16px; }
+        .card p { color: #4caf50; font-weight: bold; margin: 5px 0; }
+
+        .add-btn {
+            background: var(--primary-color);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .cart-bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #1e1e1e;
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid #333;
+        }
+
+        .send-btn {
+            background: #25d366;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
 </head>
-<body class="text-gray-100 min-h-screen antialiased">
+<body>
 
-  <!-- NAVBAR -->
-  <header class="sticky top-0 z-50 glass border-b border-white/5">
-    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <span class="text-2xl font-extrabold tracking-wide gold-text">TOSTA</span>
-        <span class="hidden sm:inline text-[10px] text-gray-500 tracking-[0.2em] uppercase">مطعم</span>
-      </div>
-      <button id="cartToggleBtn" class="relative p-2 rounded-full hover:bg-white/5 transition">
-        <i class="fas fa-shopping-bag text-lg text-gray-400"></i>
-        <span id="cartCountBadge" class="cart-badge absolute -top-1 -right-1 rounded-full hidden">0</span>
-      </button>
-    </div>
-    
-    <!-- تبويبات -->
-    <div class="max-w-6xl mx-auto px-6 pb-3 flex gap-3 overflow-x-auto">
-      <button class="tab active">🍢 كريب</button>
-      <button class="tab">🍕 بيتزا</button>
-      <button class="tab">🥮 فطير</button>
-      <button class="tab">🍗 وجبات</button>
-      <button class="tab">🥪 ساندوتشات</button>
-      <button class="tab">🍝 مكرونة</button>
-      <button class="tab">🥤 مشروبات</button>
-    </div>
-  </header>
+<header>
+    <h1>BURGER <span style="color:var(--primary-color)">SHOP</span></h1>
+</header>
 
-  <!-- المحتوى الرئيسي -->
-  <main class="max-w-6xl mx-auto px-6 py-12 pb-36">
-    
-    <!-- عنوان القسم -->
-    <div class="text-center mb-10">
-      <h2 class="text-3xl font-bold gold-text mb-2">الكريب</h2>
-      <p class="text-sm text-gray-500">عادي / كونو</p>
-      <div class="gold-line w-20 mx-auto mt-4"></div>
+<div class="banner">
+    <h2>عرض الويك إند! 🔥</h2>
+    <p>خصم 20% على أي ساندوتش دبل</p>
+</div>
+
+<div class="menu-grid">
+    <div class="card">
+        <img src="burger-image.png" alt="برجر"> <h3>بيج برجر دبل</h3>
+        <p>150 EGP</p>
+        <button class="add-btn" onclick="addToCart('بيج برجر دبل', 150)">أضف للسلة</button>
     </div>
 
-    <!-- شبكة الكروت -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      
-      <!-- كارت بطاطس -->
-      <div class="glass-card rounded-2xl overflow-hidden">
-        
-        <!-- صورة المنتج -->
-        <div class="relative h-44 overflow-hidden">
-          <img 
-            src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600&h=400&fit=crop&crop=center" 
-            alt="بطاطس مقلية ذهبية" 
-            class="w-full h-full object-cover transition duration-500 hover:scale-105"
-            loading="lazy"
-          >
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-        </div>
-        
-        <!-- تفاصيل المنتج -->
-        <div class="p-5">
-          <div class="flex items-start justify-between mb-3">
-            <div>
-              <h3 class="text-lg font-semibold text-white">بطاطس</h3>
-              <span class="text-xs text-gray-500">فريش • مقرمشة</span>
-            </div>
-            <span class="text-[10px] text-gray-400 bg-white/5 px-2 py-1 rounded-full border border-white/5">عادي / كونو</span>
-          </div>
-          
-          <!-- السعر -->
-          <div class="flex items-baseline gap-2 mb-5">
-            <span class="text-2xl font-bold text-white">60</span>
-            <span class="text-sm text-gray-500">ج</span>
-            <span class="text-gray-600 mx-1">—</span>
-            <span class="text-2xl font-bold text-white">70</span>
-            <span class="text-sm text-gray-500">ج</span>
-          </div>
-          
-          <!-- زر الإضافة -->
-          <button onclick="addToCart('بطاطس', 60, 'عادي')" class="btn-add w-full py-3 rounded-xl text-sm font-medium tracking-wide">
-            أضف للطلب
-            <i class="fas fa-plus mr-2 text-xs opacity-60"></i>
-          </button>
-        </div>
-      </div>
+    <div class="card">
+        <img src="burger2.png" alt="برجر">
+        <h3>تشيز برجر</h3>
+        <p>120 EGP</p>
+        <button class="add-btn" onclick="addToCart('تشيز برجر', 120)">أضف للسلة</button>
+    </div>
+</div>
 
-    </div>
-  </main>
+<div class="cart-bar">
+    <div id="cart-info">السلة: 0 ج.م</div>
+    <a href="#" class="send-btn" onclick="sendWhatsApp()">اطلب الآن (واتساب)</a>
+</div>
 
-  <!-- السلة العائمة -->
-  <div id="floatingCart" class="fixed bottom-0 left-0 right-0 z-40 glass rounded-t-3xl p-5 hidden max-w-6xl mx-auto">
-    <div class="flex items-center justify-between mb-3">
-      <div class="flex items-center gap-2">
-        <i class="fas fa-shopping-bag gold-text"></i>
-        <span class="font-bold text-white">الطلبات</span>
-        <span id="cartCountInline" class="text-xs text-gray-500">(0)</span>
-      </div>
-      <button id="closeCartBtn" class="text-gray-500 hover:text-white transition"><i class="fas fa-times"></i></button>
-    </div>
-    
-    <div id="cartItemsList" class="max-h-40 overflow-y-auto space-y-2 mb-3 text-sm">
-      <p class="text-gray-500 text-center">لا توجد طلبات بعد</p>
-    </div>
-    
-    <div class="flex items-center justify-between border-t border-white/5 pt-3">
-      <span class="text-gray-400">الإجمالي</span>
-      <span id="cartTotalPrice" class="text-xl font-bold gold-text">0 ج</span>
-    </div>
-    
-    <button id="checkoutBtn" class="btn-primary w-full mt-4 py-3 rounded-xl font-semibold text-sm tracking-wide disabled:opacity-30 disabled:cursor-not-allowed" disabled>
-      متابعة الطلب
-    </button>
-  </div>
-
-  <!-- نافذة إكمال البيانات -->
-  <div id="checkoutPopup" class="fixed inset-0 z-50 items-center justify-center hidden" style="background: rgba(0,0,0,0.7); backdrop-filter: blur(12px); display: none;">
-    <div class="glass-card rounded-3xl p-6 w-11/12 max-w-md">
-      <h2 class="text-xl font-bold text-white mb-5 text-center">إكمال البيانات</h2>
-      
-      <div class="space-y-3">
-        <input type="text" id="custName" placeholder="الاسم الكريم" class="input-elegant w-full rounded-xl px-4 py-3 text-sm">
-        <input type="tel" id="custPhone" placeholder="رقم الموبايل" class="input-elegant w-full rounded-xl px-4 py-3 text-sm">
-        <textarea id="custAddress" rows="2" placeholder="العنوان بالتفصيل" class="input-elegant w-full rounded-xl px-4 py-3 text-sm"></textarea>
-      </div>
-      
-      <div class="flex gap-3 mt-6">
-        <button id="closePopupBtn" class="flex-1 py-3 rounded-xl text-sm text-gray-500 border border-white/10 hover:text-white transition">إلغاء</button>
-        <button id="sendWhatsAppBtn" class="flex-1 btn-primary py-3 rounded-xl text-sm font-semibold">إرسال للواتساب</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
+<script>
     let cart = [];
-    
-    function updateCartUI() {
-      const cartList = document.getElementById('cartItemsList');
-      const totalSpan = document.getElementById('cartTotalPrice');
-      const badge = document.getElementById('cartCountBadge');
-      const inline = document.getElementById('cartCountInline');
-      const checkoutBtn = document.getElementById('checkoutBtn');
-      
-      if (cart.length === 0) {
-        cartList.innerHTML = '<p class="text-gray-500 text-center">لا توجد طلبات بعد</p>';
-        totalSpan.textContent = '0 ج';
-        badge.classList.add('hidden');
-        inline.textContent = '(0)';
-        checkoutBtn.disabled = true;
-        return;
-      }
-      
-      badge.classList.remove('hidden');
-      badge.textContent = cart.length;
-      inline.textContent = '(' + cart.length + ')';
-      
-      let total = 0;
-      cartList.innerHTML = cart.map((item, i) => {
-        total += item.price;
-        return `
-          <div class="flex items-center justify-between py-2">
-            <span class="text-white text-sm">${item.name} <span class="text-gray-500 text-xs">${item.type}</span></span>
-            <div class="flex items-center gap-3">
-              <span class="gold-text text-sm font-semibold">${item.price} ج</span>
-              <button onclick="removeFromCart(${i})" class="text-gray-500 hover:text-red-400 transition text-xs"><i class="fas fa-trash"></i></button>
-            </div>
-          </div>
-        `;
-      }).join('');
-      
-      totalSpan.textContent = total + ' ج';
-      checkoutBtn.disabled = false;
+    let total = 0;
+
+    function addToCart(name, price) {
+        cart.push(name);
+        total += price;
+        document.getElementById('cart-info').innerText = `السلة: ${total} ج.م`;
+        alert(name + " اتضاف للسلة يا وحش!");
     }
-    
-    function addToCart(name, price, type = '') {
-      cart.push({ name, price, type });
-      updateCartUI();
-      document.getElementById('floatingCart').classList.remove('hidden');
+
+    function sendWhatsApp() {
+        if (cart.length === 0) return alert("السلة فاضية!");
+        let phone = "2010XXXXXXXX"; // حط رقم المطعم هنا
+        let message = "طلب جديد من البرنامج:\n" + cart.join("\n") + "\n\nالإجمالي: " + total + " ج.م";
+        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`);
     }
-    
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      updateCartUI();
-    }
-    
-    // أحداث السلة
-    document.getElementById('cartToggleBtn').addEventListener('click', () => {
-      document.getElementById('floatingCart').classList.toggle('hidden');
-    });
-    
-    document.getElementById('closeCartBtn').addEventListener('click', () => {
-      document.getElementById('floatingCart').classList.add('hidden');
-    });
-    
-    // أحداث النافذة المنبثقة
-    document.getElementById('checkoutBtn').addEventListener('click', () => {
-      document.getElementById('checkoutPopup').style.display = 'flex';
-    });
-    
-    document.getElementById('closePopupBtn').addEventListener('click', () => {
-      document.getElementById('checkoutPopup').style.display = 'none';
-    });
-    
-    // إرسال واتساب
-    document.getElementById('sendWhatsAppBtn').addEventListener('click', () => {
-      const name = document.getElementById('custName').value.trim();
-      const phone = document.getElementById('custPhone').value.trim();
-      const address = document.getElementById('custAddress').value.trim();
-      
-      if (!name || !phone || !address) {
-        alert('من فضلك أكمل جميع البيانات');
-        return;
-      }
-      
-      let order = cart.map((item, i) => `${i+1}. ${item.name} (${item.type}) - ${item.price} ج`).join('%0A');
-      let total = cart.reduce((s, i) => s + i.price, 0);
-      let msg = `*TOSTA | طلب جديد*%0A%0A👤 ${name}%0A📞 ${phone}%0A📍 ${address}%0A%0A📋 الطلب:%0A${order}%0A%0A💰 الإجمالي: ${total} ج`;
-      
-      window.open(`https://wa.me/201030353060?text=${msg}`, '_blank');
-    });
-  </script>
+</script>
+
 </body>
-        </html>
+</html>
