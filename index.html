@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أبو خضر | المنيو الرسمي</title>
+    
+    <link rel="manifest" href="manifest.json">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="أبو خضر">
+    <link rel="apple-touch-icon" href="images/logooo.jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- لوحة ألوان وتصميم شبكي ثوري جديد كلياً --- */
+        :root {
+            --bg: #f6f6f9; 
+            --main-text: #1a1a1e;
+            --desc-text: #7c7c80;
+            --accent: #d32f2f; 
+            --accent-light: #fff5f5;
+            --address-tag: #d32f2f;
+            --white: #ffffff; 
+            --glass: rgba(255, 255, 255, 0.95);
+            --success: #2e7d32;
+            --header-bg: #ffffff;
+            --border-color: #eaeaea;
+        }
+
+        body.dark-mode {
+            --bg: #0b0b0c;
+            --main-text: #f2f2f7;
+            --desc-text: #929296;
+            --accent: #ff4d4d;
+            --accent-light: rgba(255, 77, 77, 0.08);
+            --white: #121214;
+            --glass: rgba(18, 18, 20, 0.95);
+            --header-bg: #121214;
+            --border-color: #222225;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; -webkit-tap-highlight-color: transparent; transition: background 0.2s, color 0.2s, border-color 0.2s; }
+        body { background-color: var(--bg); color: var(--main-text); line-height: 1.4; overflow-x: hidden; }
+
+        /* --- شاشة الترحيب السريعة --- */
+        #splash-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--white); z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+            transition: transform 0.5s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.5s ease;
+        }
+        .loader-content { text-align: center; animation: cinematicPulse 1s cubic-bezier(0.25, 1, 0.5, 1) infinite alternate; }
+        .loader-logo-big { width: 100px; height: 100px; border-radius: 50%; border: 2px solid var(--accent); object-fit: cover; }
+        @keyframes cinematicPulse { 0% { transform: scale(0.97); opacity: 0.9; } 100% { transform: scale(1.03); opacity: 1; } }
+        .splash-hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
+
+        /* --- الهيدر المودرن الصغير (إلغاء الضخامة القديمة) --- */
+        header { 
+            background: var(--header-bg); 
+            position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            display: flex; flex-direction: column; align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-top { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; position: relative; }
+        
+        .header-logo-container {
+            width: 55px; height: 55px; 
+            border-radius: 50%; background: white;
+            padding: 2px; overflow: hidden;
+            border: 1.5px solid var(--accent);
+        }
+        .header-logo { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+
+        .theme-toggle, .cart-trigger {
+            width: 36px; height: 36px; background: var(--bg); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            font-size: 0.95rem; border: 1px solid var(--border-color); color: var(--main-text);
+            position: relative;
+        }
+        
+        .cart-trigger.shake { animation: cartShake 0.5s ease-in-out; }
+        @keyframes cartShake { 0%, 100% { transform: rotate(0deg); } 20%, 60% { transform: rotate(-10deg); } 40%, 80% { transform: rotate(10deg); } }
+        
+        .badge {
+            position: absolute; top: -3px; right: -3px; background: var(--accent);
+            color: white; font-size: 9px; font-weight: 800; width: 16px; height: 16px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            border: 1.5px solid var(--white); transform: scale(0); transition: 0.2s;
+        }
+        .badge.show { transform: scale(1); }
+
+        .header-bottom-addr { width: 100%; padding: 4px 15px; display: flex; align-items: center; justify-content: center; gap: 4px; margin-top: 4px; }
+        .addr-tag { color: var(--address-tag); font-weight: 700; font-size: 0.7rem; }
+        .brand-addr { font-size: 0.7rem; color: var(--main-text); font-weight: 600; }
+
+        /* --- شريط الأقسام المودرن الفلات --- */
+        .category-nav {
+            display: flex; overflow-x: auto; white-space: nowrap; padding: 10px; gap: 8px;
+            scrollbar-width: none; background: var(--glass); backdrop-filter: blur(15px);
+            position: sticky; top: 111px; z-index: 999; border-bottom: 1px solid var(--border-color);
+        }
+        .category-nav::-webkit-scrollbar { display: none; }
+        .cat-item { display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--white); border-radius: 20px; border: 1px solid var(--border-color); cursor: pointer; }
+        .cat-img-box { width: 22px; height: 22px; border-radius: 50%; overflow: hidden; }
+        .cat-img-box img { width: 100%; height: 100%; object-fit: cover; }
+        .cat-item span { font-size: 0.75rem; font-weight: 700; color: var(--main-text); }
+        
+        .cat-item.active { background: var(--accent); border-color: var(--accent); }
+        .cat-item.active span { color: #ffffff; }
+
+        /* --- نظام العرض الشبكي الثوري الجديد (Grid 2 Columns) --- */
+        .menu-list { 
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 15px; 
+            max-width: 600px; 
+            margin: auto; 
+        }
+        
+        .food-card {
+            background: var(--white); 
+            border-radius: 16px; 
+            display: flex;
+            flex-direction: column;
+            padding: 10px; 
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* تضخيم وتثبيت مساحة الصورة في الكارت المربع */
+        .item-img-box { 
+            width: 100%; 
+            height: 110px; 
+            border-radius: 10px; 
+            overflow: hidden; 
+            background: var(--bg); 
+            margin-bottom: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .item-img-box img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .food-info { flex: 1; display: flex; flex-direction: column; width: 100%; }
+        
+        /* تصغير الخطوط لدرجة احترافية جداً تناسب الموبايل */
+        .food-name { font-weight: 700; font-size: 0.85rem; color: var(--main-text); margin-bottom: 2px; line-height: 1.2; }
+        .food-desc { font-size: 0.68rem; color: var(--desc-text); line-height: 1.3; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 24px; }
+        
+        .price-row { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: auto; }
+        .food-price { font-weight: 800; color: var(--accent); font-size: 0.85rem; }
+        
+        .add-btn { 
+            background: var(--accent); 
+            color: #ffffff; 
+            border: none; 
+            width: 28px;
+            height: 28px;
+            border-radius: 50%; 
+            font-size: 1.1rem; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: bold;
+        }
+        
+        .added-notice {
+            position: absolute; 
+            top: 10px;
+            left: 10px;
+            background: var(--success);
+            color: white; 
+            font-size: 0.6rem; 
+            font-weight: 700;
+            padding: 2px 6px; 
+            border-radius: 6px; 
+            opacity: 0; 
+            transition: 0.2s ease;
+        }
+        .added-notice.show { opacity: 1; }
+
+        .fly-item {
+            position: fixed; z-index: 9999; pointer-events: none;
+            width: 24px; height: 24px; background: var(--accent);
+            color: white; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-size: 12px;
+            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        /* --- Footer --- */
+        .restaurant-footer {
+            padding: 20px; text-align: center; background: var(--white);
+            border-top: 1px solid var(--border-color); margin-top: 20px;
+        }
+        .footer-phones { margin-bottom: 10px; }
+        .footer-phones a { 
+            display: block; color: var(--accent); text-decoration: none; 
+            font-weight: 700; font-size: 0.9rem; margin: 2px 0; 
+        }
+        .footer-rights { font-size: 0.7rem; color: var(--main-text); font-weight: 600; margin-bottom: 2px; }
+        .dev-credit { font-size: 0.75rem; color: var(--desc-text); font-weight: 700; }
+        .dev-credit a { color: var(--accent); text-decoration: none; display: block; margin-top: 2px; }
+
+        /* مودال السلة */
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 2000; display: none; justify-content: center; align-items: flex-end; }
+        .modal-content { background: var(--white); width: 100%; max-width: 500px; padding: 20px; border-radius: 24px 24px 0 0; max-height: 85vh; overflow-y: auto; color: var(--main-text); }
+        
+        .cart-item-card {
+            display: flex; align-items: center; gap: 10px; padding: 10px;
+            background: var(--bg); border-radius: 12px; margin-bottom: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .cart-item-img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; }
+        .cart-item-info { flex: 1; }
+        .cart-item-name { font-weight: 700; font-size: 0.8rem; color: var(--main-text); }
+        .cart-item-price { color: var(--accent); font-weight: 800; font-size: 0.75rem; display: block; }
+        .remove-btn { color: #d32f2f; font-weight: 700; font-size: 0.7rem; cursor: pointer; }
+
+        .user-fields input { background: var(--bg); border: 1px solid var(--border-color); padding: 12px; border-radius: 12px; width: 100%; margin-bottom: 8px; color: var(--main-text); text-align: right; font-size: 0.8rem; font-weight: 600; }
+        .user-fields input:focus { border-color: var(--accent); outline: none; }
+        
+        .submit-btn { background: var(--accent); color: white; border: none; padding: 14px; border-radius: 14px; width: 100%; font-weight: 800; font-size: 0.9rem; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div id="splash-screen">
+        <div class="loader-content">
+            <img src="./images/logooo.jpg" class="loader-logo-big">
+        </div>
+    </div>
+
+    <header>
+        <div class="header-top">
+            <div class="cart-trigger" onclick="toggleCart(true)" id="cartBtn">
+                <span class="badge" id="cartBadge">0</span>
+                <span>🛒</span>
+            </div>
+            <div class="header-logo-container">
+                <img src="./images/logooo.jpg" class="header-logo">
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
+        </div>
+        <div class="header-bottom-addr">
+            <span class="addr-tag">📍 العنوان:</span>
+            <span class="brand-addr">بنزينة 6 وطنية العاصمة</span>
+        </div>
+    </header>
+
+    <div class="category-nav" id="catNav"></div>
+    <div id="menuList" class="menu-list"></div>
+
+    <footer class="restaurant-footer">
+        <div class="footer-phones">
+            <span style="font-weight: 800; font-size: 0.75rem;">📞 أرقام المطعم:</span>
+            <a href="tel:01034874663">01034874663</a>
+            <a href="tel:01008915741">01008915741</a>
+        </div>
+        <p class="footer-rights">جميع الحقوق محفوظة لـ مطعم أبو خضر 2026 ©</p>
+        <div class="dev-credit">
+            Designed by eng / Ahmed Gaber shehata
+            <a href="tel:01003800314">📞 01003800314</a>
+        </div>
+    </footer>
+
+    <div class="modal" id="cartModal" onclick="if(event.target==this) toggleCart(false)">
+        <div class="modal-content">
+            <h2 style="margin-bottom: 15px; font-size: 1.1rem;">طلباتك</h2>
+            <div id="cartItemsList"></div>
+            <div style="margin: 15px 0; padding: 12px; background: var(--accent-light); border-radius: 12px; display: flex; justify-content: space-between; border: 1px solid rgba(211, 47, 47, 0.05); font-size: 0.85rem;">
+                <b>المجموع</b>
+                <b id="totalAmount">0 ج.م</b>
+            </div>
+            <div class="user-fields">
+                <input type="text" id="uName" placeholder="الاسم بالكامل">
+                <input type="tel" id="uPhone" placeholder="رقم الموبايل">
+                <input type="text" id="uAddr" placeholder="العنوان بالتفصيل">
+            </div>
+            <button class="submit-btn" onclick="sendToWA()">تأكيد الطلب</button>
+        </div>
+    </div>
+
+    <script>
+        const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRzOW2Z2TFsXm8b7uV8QcVqY1HKF0Qq-Dxyeq2c6avxRsm9PjqXGvM4yyIWRV30DqblUB3BEMeXpI-a/pub?output=csv';
+        const IMAGES_PATH = "./images/"; 
+        let menuData = [], cart = [];
+        let currentTotal = 0; 
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            document.getElementById('themeBtn').innerText = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        }
+
+        function preloadImages(data) {
+            data.forEach(item => {
+                const img = new Image();
+                img.src = item.img;
+            });
+            const cats = [...new Set(data.map(i => i.category))];
+            cats.forEach(c => {
+                const img = new Image();
+                img.src = `${IMAGES_PATH}${c}.jpg`;
+            });
+        }
+
+        async function loadMenu() {
+            try {
+                const response = await fetch(csvUrl);
+                const data = await response.text();
+                const rows = data.split('\n').slice(1);
+                menuData = rows.map(row => {
+                    const col = row.split(',');
+                    return { category: col[0]?.trim(), name: col[1]?.trim(), price: col[2]?.trim(), desc: col[3]?.trim() || "", img: `${IMAGES_PATH}${col[1]?.trim()}.jpg` };
+                }).filter(i => i.name);
+                
+                preloadImages(menuData);
+                renderNav();
+                setTimeout(() => {
+                    document.getElementById('splash-screen').classList.add('splash-hidden');
+                    if ('serviceWorker' in navigator) {
+                        navigator.serviceWorker.register('sw.js').catch(err => console.log('SW failed:', err));
+                    }
+                }, 1300); 
+            } catch (e) { 
+                document.getElementById('splash-screen').classList.add('splash-hidden'); 
+            }
+        }
+
+        function renderNav() {
+            const uniqueCats = [...new Map(menuData.map(item => [item.category, item])).values()];
+            document.getElementById('catNav').innerHTML = uniqueCats.map((cat, idx) => `
+                <div class="cat-item ${idx === 0 ? 'active' : ''}" onclick="filterCat('${cat.category}', this)">
+                    <div class="cat-img-box"><img src="${IMAGES_PATH}${cat.category}.jpg" onerror="this.src='${IMAGES_PATH}default.jpg'"></div>
+                    <span>${cat.category}</span>
+                </div>
+            `).join('');
+            filterCat(menuData[0].category);
+        }
+
+        function filterCat(cat, el) {
+            if(el) { document.querySelectorAll('.cat-item').forEach(b => b.classList.remove('active')); el.classList.add('active'); }
+            document.getElementById('menuList').innerHTML = menuData.filter(i => i.category === cat).map(item => `
+                <div class="food-card">
+                    <div class="item-img-box"><img src="${item.img}" onerror="this.src='${IMAGES_PATH}default.jpg'"></div>
+                    <div class="food-info">
+                        <span class="food-name">${item.name}</span>
+                        <p class="food-desc">${item.desc}</p>
+                        <div class="price-row">
+                            <span class="food-price">${item.price} ج.م</span>
+                            <span class="added-notice">✅</span>
+                            <button class="add-btn" onclick="addToCart(event, this, '${item.name}', ${item.price}, '${item.img}')">+</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(e, btn, name, price, img) {
+            cart.push({name, price, img});
+            const notice = btn.previousElementSibling;
+            notice.classList.add('show');
+            setTimeout(() => notice.classList.remove('show'), 1500);
+
+            const fly = document.createElement('div');
+            fly.className = 'fly-item';
+            fly.innerHTML = '🍔';
+            fly.style.left = e.clientX + 'px';
+            fly.style.top = e.clientY + 'px';
+            document.body.appendChild(fly);
+
+            const cartBtn = document.getElementById('cartBtn');
+            const cartPos = cartBtn.getBoundingClientRect();
+            setTimeout(() => {
+                fly.style.left = (cartPos.left + 15) + 'px';
+                fly.style.top = (cartPos.top + 15) + 'px';
+                fly.style.transform = 'scale(0.2)';
+                fly.style.opacity = '0';
+            }, 10);
+            
+            setTimeout(() => { 
+                fly.remove(); 
+                updateCart();
+                cartBtn.classList.add('shake');
+                setTimeout(() => cartBtn.classList.remove('shake'), 500);
+            }, 700);
+        }
+
+        function updateCart() {
+            const badge = document.getElementById('cartBadge');
+            badge.innerText = cart.length;
+            badge.classList.toggle('show', cart.length > 0);
+            currentTotal = 0;
+            document.getElementById('cartItemsList').innerHTML = cart.map((item, idx) => {
+                currentTotal += parseFloat(item.price);
+                return `
+                <div class="cart-item-card">
+                    <img src="${item.img}" class="cart-item-img" onerror="this.src='${IMAGES_PATH}default.jpg'">
+                    <div class="cart-item-info">
+                        <span class="cart-item-name">${item.name}</span>
+                        <span class="cart-item-price">${item.price} ج.م</span>
+                    </div>
+                    <span class="remove-btn" onclick="removeFromCart(${idx})">حذف</span>
+                </div>`;
+            }).join('');
+            document.getElementById('totalAmount').innerText = `${currentTotal} ج.م`;
+        }
+
+        function removeFromCart(idx) {
+            cart.splice(idx, 1);
+            updateCart();
+            if(cart.length === 0) toggleCart(false);
+        }
+
+        function toggleCart(s) { 
+            const modal = document.getElementById('cartModal');
+            if (s) {
+                modal.style.display = 'flex';
+                history.pushState({ cartOpen: true }, "");
+            } else {
+                modal.style.display = 'none';
+            }
+        }
+
+        window.addEventListener('popstate', function (event) {
+            const modal = document.getElementById('cartModal');
+            if (modal.style.display === 'flex') { modal.style.display = 'none'; }
+        });
+
+        function sendToWA() {
+            const n = document.getElementById('uName').value, p = document.getElementById('uPhone').value, a = document.getElementById('uAddr').value;
+            if(!n || !p || !a || cart.length === 0) return alert("يرجى إكمال البيانات واختيار الأصناف");
+            
+            let msg = `طلب جديد - مطعم أبو خضر\n\n👤 الاسم: ${n}\n📱 الموبايل: ${p}\n📍 العنوان: ${a}\n\nالطلبات:\n` 
+                      + cart.map(i => `- ${i.name} (${i.price} ج.م)`).join('\n')
+                      + `\n\n💰 الإجمالي: ${currentTotal} ج.م`;
+                      
+            window.open(`https://wa.me/201000452121?text=${encodeURIComponent(msg)}`);
+        }
+
+        loadMenu();
+    </script>
+</body>
+</html>
