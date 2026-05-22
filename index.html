@@ -132,9 +132,9 @@
             border: 1px solid var(--border-color);
             position: relative;
             overflow: hidden;
+            height: 230px; 
         }
         
-        /* تضخيم وتثبيت مساحة الصورة في الكارت المربع */
         .item-img-box { 
             width: 100%; 
             height: 110px; 
@@ -146,10 +146,9 @@
         }
         .item-img-box img { width: 100%; height: 100%; object-fit: cover; }
         
-        .food-info { flex: 1; display: flex; flex-direction: column; width: 100%; }
+        .food-info { flex: 1; display: flex; flex-direction: column; width: 100%; justify-content: space-between; }
         
-        /* تصغير الخطوط لدرجة احترافية جداً تناسب الموبايل */
-        .food-name { font-weight: 700; font-size: 0.85rem; color: var(--main-text); margin-bottom: 2px; line-height: 1.2; }
+        .food-name { font-weight: 700; font-size: 0.85rem; color: var(--main-text); margin-bottom: 2px; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
         .food-desc { font-size: 0.68rem; color: var(--desc-text); line-height: 1.3; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 24px; }
         
         .price-row { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: auto; }
@@ -287,7 +286,8 @@
     </div>
 
     <script>
-        const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRzOW2Z2TFsXm8b7uV8QcVqY1HKF0Qq-Dxyeq2c6avxRsm9PjqXGvM4yyIWRV30DqblUB3BEMeXpI-a/pub?output=csv';
+        // هنا تم وضع المعرّف (ID) المباشر والصحيح لملفك الجديد لضمان قراءة المنيو الجديد بالكامل
+        const csvUrl = 'https://docs.google.com/spreadsheets/d/1Es309XMOxycfwIVLltPOblmWePBrzCd85CttBQXf3iU/gviz/tq?tqx=out:csv';
         const IMAGES_PATH = "./images/"; 
         let menuData = [], cart = [];
         let currentTotal = 0; 
@@ -313,10 +313,20 @@
             try {
                 const response = await fetch(csvUrl);
                 const data = await response.text();
-                const rows = data.split('\n').slice(1);
+                
+                // تنظيف الداتا من الأقواس وعلامات التنصيص الزائدة لضمان قراءة سليمة للعربي
+                const cleanData = data.replace(/"/g, '');
+                const rows = cleanData.split('\n').slice(1);
+                
                 menuData = rows.map(row => {
                     const col = row.split(',');
-                    return { category: col[0]?.trim(), name: col[1]?.trim(), price: col[2]?.trim(), desc: col[3]?.trim() || "", img: `${IMAGES_PATH}${col[1]?.trim()}.jpg` };
+                    return { 
+                        category: col[0]?.trim(), 
+                        name: col[1]?.trim(), 
+                        price: col[2]?.trim(), 
+                        desc: col[3]?.trim() || "", 
+                        img: `${IMAGES_PATH}${col[1]?.trim()}.jpg` 
+                    };
                 }).filter(i => i.name);
                 
                 preloadImages(menuData);
@@ -340,7 +350,7 @@
                     <span>${cat.category}</span>
                 </div>
             `).join('');
-            filterCat(menuData[0].category);
+            if(menuData.length > 0) filterCat(menuData[0].category);
         }
 
         function filterCat(cat, el) {
